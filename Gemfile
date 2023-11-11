@@ -15,6 +15,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.2'
 gem 'redis', '>= 4.0.1'
+gem "graphql", "~> 2.1"
 gem 'rubocop', '~> 1.57'
 gem 'sidekiq', '~> 7.2'
 gem 'sprockets-rails'
@@ -31,5 +32,7 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'spring'
   gem 'web-console'
+  gem "graphiql-rails"
 end
+
 
