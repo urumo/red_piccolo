@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,32 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_231_111_191_919) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_13_061954) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'pgcrypto'
-  enable_extension 'plpgsql'
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
 
-  create_table 'user_settings', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.string 'first_name'
-    t.string 'last_name'
-    t.date 'date_of_birth'
-    t.uuid 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_user_settings_on_user_id'
+  create_table "blocked_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "other_user_id"
+    t.datetime "lift_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'users', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.string 'email'
-    t.string 'password'
-    t.string 'password_digest'
-    t.string 'email_change_token'
-    t.string 'password_reset_token'
-    t.string 'password_salt'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
+  create_table "user_settings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_settings_on_user_id"
   end
 
-  add_foreign_key 'user_settings', 'users'
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.string "password_digest"
+    t.string "email_change_token"
+    t.string "password_reset_token"
+    t.string "password_salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role", default: 0
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "blocked_users", "users"
+  add_foreign_key "blocked_users", "users", column: "other_user_id"
+  add_foreign_key "user_settings", "users"
 end

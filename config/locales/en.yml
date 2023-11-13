@@ -33,6 +33,7 @@ en:
     invalid_password: "Invalid password"
     not_a_valid_email: "Not a valid email"
     email_already_taken: "is already taken"
+    self_block: "You can't block yourself"
     password:
       number_missing: 'must contain at least one number'
       uppercase_missing: 'must contain at least one uppercase letter'
