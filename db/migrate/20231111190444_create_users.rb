@@ -6,9 +6,6 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :email
       t.string :password
       t.string :password_digest
-      t.string :email_change_token
-      t.string :password_reset_token
-      t.string :password_salt
 
       t.timestamps
     end
