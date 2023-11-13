@@ -9,7 +9,7 @@ RSpec.describe DomainServices::User::LoginService do
 
   describe '#call with correct credentials' do
     it 'returns a token' do
-      result = DomainServices::User::LoginService.call(@user.email, 'P@ssw0rd')
+      result = described_class.call(@user.email, 'P@ssw0rd')
       expect(result[:token]).to be_a(String)
     end
   end
@@ -17,13 +17,13 @@ RSpec.describe DomainServices::User::LoginService do
   describe '#call with incorrect credentials' do
     it 'raises an error when email is not found' do
       expect do
-        DomainServices::User::LoginService.call("#{@user.email}1", 'P@ssw0rd')
+        described_class.call("#{@user.email}1", 'P@ssw0rd')
       end.to raise_error('User not found')
     end
 
     it 'raises an error when password is incorrect' do
       expect do
-        DomainServices::User::LoginService.call(@user.email, 'P@ssw0rd1')
+        described_class.call(@user.email, 'P@ssw0rd1')
       end.to raise_error('Invalid password')
     end
   end

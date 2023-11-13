@@ -11,7 +11,7 @@ module ApplicationServices
     end
 
     def self.decode(token)
-      JWT.decode(token, HMAC_SECRET, true, algorithm: 'HS512')
+      JWT.decode(token, HMAC_SECRET, true, algorithm: 'HS512').first
     end
   end
 end
