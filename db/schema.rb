@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 20_231_111_191_919) do
     t.string 'password_salt'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
   add_foreign_key 'user_settings', 'users'

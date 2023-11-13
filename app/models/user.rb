@@ -10,17 +10,20 @@ class User < ApplicationRecord
 
   normalizes :email, with: ->(email) { email.strip.downcase }
 
-  validates :email, presence: true, uniqueness: true
+  validates_presence_of :email
+  validates_uniqueness_of :email, message: I18n.t('user.email_already_taken')
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP,
-                              message: 'must be a valid email address' }
-  validates :password, format: { with: /\d/, message: 'must contain at least one number' }, if: -> { password.present? }
-  validates :password, format: { with: /[A-Z]/, message: 'must contain at least one uppercase letter' }, if: lambda {
-                                                                                                               password.present?
-                                                                                                             }
-  validates :password, format: { with: /[a-z]/, message: 'must contain at least one lowercase letter' }, if: lambda {
-                                                                                                               password.present?
-                                                                                                             }
-  validates :password, format: { with: /\W/, message: 'must contain at least one special character' }, if: lambda {
-                                                                                                             password.present?
-                                                                                                           }
+                              message: I18n.t('user.not_a_valid_email') }
+  validates :password, format: { with: /\d/, message: I18n.t('user.password.number_missing') }, if: lambda {
+                                                                                                      password.present?
+                                                                                                    }
+  validates :password, format: { with: /[A-Z]/, message: I18n.t('user.password.uppercase_missing') }, if: lambda {
+                                                                                                            password.present?
+                                                                                                          }
+  validates :password, format: { with: /[a-z]/, message: I18n.t('user.password.lowercase_missing') }, if: lambda {
+                                                                                                            password.present?
+                                                                                                          }
+  validates :password, format: { with: /\W/, message: I18n.t('user.password.special_character_missing') }, if: lambda {
+                                                                                                                 password.present?
+                                                                                                               }
 end

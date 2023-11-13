@@ -7,15 +7,17 @@ module DomainServices
 
       def initialize(email, password)
         super()
+
         @email = email
+
         @password = password
       end
 
       def call
-        user = ::User.find_by(email:)
-        raise 'User not found' unless user
+        user = ::User.find_by_email(email)
+        raise DomainErrors::User::NotFoundError, t('user.not_found') unless user
 
-        raise 'Invalid password' unless user.authenticate(password)
+        raise DomainErrors::User::InvalidPasswordError, t('user.invalid_password') unless user.authenticate(password)
 
         { token: ApplicationServices::JwtService.encode(user_id: user.id) }
       end
