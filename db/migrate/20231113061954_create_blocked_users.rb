@@ -10,7 +10,7 @@ class CreateBlockedUsers < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    add_foreign_key :blocked_users, :users, column: :user_id, primary_key: :id,type: :uuid
+    add_foreign_key :blocked_users, :users, column: :user_id, primary_key: :id, type: :uuid
     add_foreign_key :blocked_users, :users, column: :other_user_id, primary_key: :id, type: :uuid
   end
 end

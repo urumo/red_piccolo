@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
 module DomainErrors
-class User::SelfBlockError < StandardError; end
+  module User
+    class SelfBlockError < StandardError; end
+  end
 end
