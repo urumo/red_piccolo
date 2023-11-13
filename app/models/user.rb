@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_secure_password
   has_one :user_setting, dependent: :destroy
   has_many :blocked_users, dependent: :destroy
+  has_many :chat_participants, dependent: :destroy
+  has_many :chats, through: :chat_participants
+  has_many :chat_messages, dependent: :destroy
   enum role: { user: 0, moderator: 1, admin: 2, superadmin: 3 }
 
   after_create do
@@ -17,15 +20,15 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: I18n.t('user.not_a_valid_email') }
   validates :password, format: { with: /\d/, message: I18n.t('user.password.number_missing') }, if: lambda {
-                                                                                                      password.present?
-                                                                                                    }
+    password.present?
+  }
   validates :password, format: { with: /[A-Z]/, message: I18n.t('user.password.uppercase_missing') }, if: lambda {
-                                                                                                            password.present?
-                                                                                                          }
+    password.present?
+  }
   validates :password, format: { with: /[a-z]/, message: I18n.t('user.password.lowercase_missing') }, if: lambda {
-                                                                                                            password.present?
-                                                                                                          }
+    password.present?
+  }
   validates :password, format: { with: /\W/, message: I18n.t('user.password.special_character_missing') }, if: lambda {
-                                                                                                                 password.present?
-                                                                                                               }
+    password.present?
+  }
 end
