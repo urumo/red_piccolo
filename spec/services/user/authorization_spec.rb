@@ -3,14 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe DomainServices::User::AuthorizationService do
-
   let(:not_valid_jwt) { 'not a jwt' }
 
   describe '#call' do
     context 'when token is valid' do
       it 'returns the user' do
         user = FactoryBot.create(:user)
-        token = ApplicationServices::JwtService.encode({user_id: user.id })
+        token = ApplicationServices::JwtService.encode({ user_id: user.id })
         expect(described_class.call(token)).to eq(user)
       end
     end
@@ -23,7 +22,7 @@ RSpec.describe DomainServices::User::AuthorizationService do
     context 'when token is expired' do
       it 'raises an error' do
         user = FactoryBot.create(:user)
-        token = ApplicationServices::JwtService.encode({user_id: user.id }, 1.second.from_now.to_i)
+        token = ApplicationServices::JwtService.encode({ user_id: user.id }, 1.second.from_now.to_i)
         sleep 2
         expect { described_class.call(token) }.to raise_error(JWT::ExpiredSignature)
       end
