@@ -11,4 +11,5 @@ class Chat < ApplicationRecord
   after_create do
     chat_participants.update(user: users.first, user_role: :owner) unless owner
   end
+  def admin_or_owner?(user) = admins.include?(user) || owner == user
 end
