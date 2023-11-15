@@ -28,15 +28,11 @@ RSpec.describe DomainServices::Chat::AddUserToChatService do
     end
     context 'when user is not in chat' do
       it 'adds user to chat' do
-        expect do
-          described_class.new(chat, chat.owner, user).call
-        end.to change { chat.users.count }.by(1)
+        expect { described_class.new(chat, chat.owner, user).call }.to change { chat.users.count }.by(1)
       end
-
       it 'creates chat participant' do
-        expect do
-          described_class.new(chat, chat.admins.first, user).call
-        end.to change { chat.chat_participants.count }.by(1)
+        expect { described_class.new(chat, chat.admins.first, user).call }
+          .to change { chat.chat_participants.count }.by(1)
       end
     end
   end
