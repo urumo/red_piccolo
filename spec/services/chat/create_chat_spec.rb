@@ -29,5 +29,14 @@ RSpec.describe DomainServices::Chat::CreateChatService do
         expect(chat.owner.id).to eq(owner.id)
       end
     end
+
+    context 'user' do
+      it 'creates a chat with the correct user and the user has only one chat after creating' do
+        chat = described_class.new(owner, chat_name, nil).call
+        expect(chat.users.count).to eq(1)
+        expect(chat.owner).to eq(owner)
+        expect(owner.chats.count).to eq(1)
+      end
+    end
   end
 end

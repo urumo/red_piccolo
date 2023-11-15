@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 20_231_113_225_957) do
     t.boolean 'is_restricted'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.string 'user_admin_name', default: 'admin'
+    t.string 'user_admin_name', default: 'member'
     t.index ['chat_id'], name: 'index_chat_participants_on_chat_id'
     t.index ['user_id'], name: 'index_chat_participants_on_user_id'
   end
