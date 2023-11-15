@@ -11,5 +11,8 @@ FactoryBot.define do
         FactoryBot.build(:chat_participant_member)
       ]
     end
+    chat_messages do
+      [FactoryBot.build(:chat_message, user: chat_participants.first.user)]
+    end
   end
 end
