@@ -9,6 +9,6 @@ class Chat < ApplicationRecord
   def admins = users.where(chat_participants: { user_role: :admin })
 
   after_create do
-    chat_participants.create(user: users.first, user_role: :owner)
+    chat_participants.create(user: users.first, user_role: :owner) unless owner
   end
 end
