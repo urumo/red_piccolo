@@ -18,6 +18,7 @@ module DomainServices
         raise DomainErrors::Chat::UserAlreadyInChatError if user_in_chat?
 
         chat.chat_participants.create!(user:)
+        chat
       end
 
       private

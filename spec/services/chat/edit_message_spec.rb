@@ -9,7 +9,7 @@ RSpec.describe DomainServices::Chat::EditMessageService do
   describe '#call' do
     context 'chat' do
       it 'has 1 message' do
-        expect(chat.chat_messages.count).to eq(1)
+        expect(chat.chat_messages.count).to eq(30)
       end
     end
     context 'when user is not the owner of the message' do

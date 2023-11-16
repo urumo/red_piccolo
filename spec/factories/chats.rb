@@ -12,7 +12,7 @@ FactoryBot.define do
       ]
     end
     chat_messages do
-      [FactoryBot.build(:chat_message, user: chat_participants.first.user)]
+      Array.new(30).map { FactoryBot.build(:chat_message, user: chat_participants.first.user) }
     end
   end
 end
