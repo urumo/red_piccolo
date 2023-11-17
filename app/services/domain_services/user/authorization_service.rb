@@ -14,6 +14,8 @@ module DomainServices
       def call
         payload = ApplicationServices::JwtService.decode(token)
         ::User.find(payload['user_id'])
+      rescue StandardError
+        raise DomainErrors::User::AuthorizationError, 'Invalid or expired token'
       end
     end
   end

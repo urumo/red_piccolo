@@ -21,6 +21,10 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, message: I18n.t('user.email_already_taken')
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: I18n.t('user.not_a_valid_email') }
+
+  validates :password, length: { minimum: 8, message: I18n.t('user.password.too_short', count: 8) }, if: lambda {
+    password.present?
+  }
   validates :password, format: { with: /\d/, message: I18n.t('user.password.number_missing') }, if: lambda {
     password.present?
   }

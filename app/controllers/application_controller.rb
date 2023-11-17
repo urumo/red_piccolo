@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def current_user_token
+    token_header = request.headers['Authorization']
+
+    return 'Session not found' if token_header.nil?
+
+    token_header.split(' ').last
+  end
+
   def redirect_to_login
     respond_to do |format|
       # format.html { redirect_to auth_url }
