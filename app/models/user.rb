@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :chat_messages, dependent: :destroy
   enum role: { user: 0, moderator: 1, admin: 2, superadmin: 3 }
 
+  def full_name = "#{user_setting.first_name} #{user_setting.last_name}"
+
   after_create do
     UserSetting.create(user: self)
   end

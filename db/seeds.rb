@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # start_time = Time.now
 User.create!(email: 'admin@svck.dev', password: 'P@ssw0rd', role: :superadmin)
 

@@ -4,6 +4,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
+    "@rails/actioncable": "^7.1.2",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
