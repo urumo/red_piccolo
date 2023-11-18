@@ -24,5 +24,7 @@ class User < ApplicationRecord
 
   private
 
-  def password_present? = password.present?
+  def password_present?
+    @password_present ||= password.present?
+  end
 end
