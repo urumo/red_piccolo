@@ -14,7 +14,7 @@ module DomainServices
       end
 
       def call
-        ::User.new(email:, password:).save!
+        ::User.new(email:, password:, password_salt: SecureRandom.hex(16)).save!
       end
     end
   end
