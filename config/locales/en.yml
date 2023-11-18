@@ -28,4 +28,13 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  user:
+    not_found: "User not found"
+    invalid_password: "Invalid password"
+    not_a_valid_email: "Not a valid email"
+    email_already_taken: "is already taken"
+    password:
+      number_missing: 'must contain at least one number'
+      uppercase_missing: 'must contain at least one uppercase letter'
+      lowercase_missing: 'must contain at least one lowercase letter'
+      special_character_missing: 'must contain at least one special character'

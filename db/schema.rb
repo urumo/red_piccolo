@@ -28,14 +28,14 @@ ActiveRecord::Schema[7.1].define(version: 20_231_111_191_919) do
   end
 
   create_table 'users', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.string 'email'
-    t.string 'password'
+    t.string 'email', null: false
     t.string 'password_digest'
     t.string 'email_change_token'
     t.string 'password_reset_token'
     t.string 'password_salt'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
   add_foreign_key 'user_settings', 'users'
