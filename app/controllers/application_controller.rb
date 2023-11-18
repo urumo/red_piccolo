@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-
   def authorize_user
     begin
       @current_user = DomainServices::User::AuthorizationService.call(request.headers['Authorization'] ||
                                                                         auth_cookie)
-      # session[:user_id] = @current_user.id
-    rescue JWT::DecodeError => _e
+    rescue DomainErrors::User::AuthorizationError
+      cookies.delete(:Authorization)
+      session[:user_id] = nil
       nil
     end
 

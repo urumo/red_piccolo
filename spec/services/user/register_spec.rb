@@ -13,29 +13,35 @@ RSpec.describe DomainServices::User::RegisterService do
     context 'with valid params' do
       it 'creates a user' do
         expect do
-          described_class.call(@correct_email, @correct_password)
+          described_class.call(@correct_email, @correct_password, @correct_password)
         end.to change { User.count }.by(1)
       end
 
       it 'throws an error on duplicate email' do
-        described_class.call(@correct_email, @correct_password)
+        described_class.call(@correct_email, @correct_password, @correct_password)
         expect do
-          described_class.call(@correct_email, @correct_password)
-        end.to raise_error(ActiveRecord::RecordInvalid)
+          described_class.call(@correct_email, @correct_password, @correct_password)
+        end.to raise_error(DomainErrors::User::EmailAlreadyTakenError)
       end
     end
 
     context 'with invalid params' do
       it 'raises an error on invalid email' do
         expect do
-          described_class.call(@incorrect_email, @incorrect_password)
+          described_class.call(@incorrect_email, @incorrect_password, @incorrect_password)
         end.to raise_error(ActiveRecord::RecordInvalid)
       end
 
       it 'raises an error on invalid password' do
         expect do
-          described_class.call(@correct_email, @incorrect_password)
+          described_class.call(@correct_email, @incorrect_password, @incorrect_password)
         end.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it 'raises an error on password confirmation mismatch' do
+        expect do
+          described_class.call(@correct_email, @correct_password, 'not_the_same')
+        end.to raise_error(DomainErrors::User::PasswordConfirmationDidNotMatchError)
       end
     end
   end

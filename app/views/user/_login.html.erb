@@ -7,25 +7,25 @@
             <h1 class="title has-text-centered">Login</h1>
 
             <%= form_tag(login_path) do %>
-            <div class="field">
-              <%= label_tag :email,nil, class: 'label'  %>
-              <div class="control">
-                <%= email_field :email, nil, class: 'input', placeholder: 'Enter your email' %>
+              <div class="field">
+                <%= label_tag :email, nil, class: 'label' %>
+                <div class="control">
+                  <%= email_field_tag :email, nil, class: 'input', placeholder: 'Enter your email' %>
+                </div>
               </div>
-            </div>
 
-            <div class="field">
-              <%= label_tag :password,nil, class: 'label'  %>
-              <div class="control">
-                <%= password_field_tag :password, nil, class: 'input', placeholder: 'Enter your password' %>
+              <div class="field">
+                <%= label_tag :password, nil, class: 'label' %>
+                <div class="control">
+                  <%= password_field_tag :password, nil, class: 'input', placeholder: 'Enter your password' %>
+                </div>
               </div>
-            </div>
 
-            <div class="field">
-              <div class="control">
-                <%= submit_tag 'Login', class: 'button is-primary is-fullwidth' %>
+              <div class="field">
+                <div class="control">
+                  <%= submit_tag 'Login', class: 'button is-primary is-fullwidth' %>
+                </div>
               </div>
-            </div>
             <% end %>
             <p class="has-text-centered">
               Don't have an account? <a href='?form_action=register'>Sign up</a>

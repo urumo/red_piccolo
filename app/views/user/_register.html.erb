@@ -5,35 +5,35 @@
         <div class="column is-one-third">
           <div class="box">
             <h1 class="title has-text-centered">Registration</h1>
-
-            <form>
+            <%= form_tag(register_path) do %>
               <div class="field">
-                <label class="label">Email</label>
+                <%= label_tag :email, nil, class: 'label' %>
                 <div class="control">
-                  <input class="input" type="email" placeholder="Enter your email" required>
+                  <%= email_field_tag :email, nil, class: 'input', placeholder: 'Enter your email' %>
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">Password</label>
+                <%= label_tag :password, nil, class: 'label' %>
                 <div class="control">
-                  <input class="input" type="password" placeholder="Enter your password" required>
+                  <%= password_field_tag :password, nil, class: 'input', placeholder: 'Enter your password' %>
+                </div>
+              </div>
+
+
+              <div class="field">
+                <%= label_tag "Confirm Password", nil, class: 'label' %>
+                <div class="control">
+                  <%= password_field_tag :password_confirmation, nil, class: 'input', placeholder: 'Confirm your password' %>
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">Confirm Password</label>
                 <div class="control">
-                  <input class="input" type="password" placeholder="Confirm your password" required>
+                  <%= submit_tag 'Register', class: 'button is-info is-fullwidth' %>
                 </div>
               </div>
-
-              <div class="field">
-                <div class="control">
-                  <button class="button is-info is-fullwidth">Register</button>
-                </div>
-              </div>
-            </form>
+            <% end %>
 
             <p class="has-text-centered">
               Already have an account? <a href="?form_action=login">Login</a>

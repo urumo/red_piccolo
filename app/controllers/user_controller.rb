@@ -11,25 +11,19 @@ class UserController < ApplicationController
   end
 
   def logout
-    session[:token] = nil
-    cookies[:Authorization] = nil
+    session[:user_id] = nil
+    cookies.delete(:Authorization)
     redirect_to root_path
   end
 
   def login
-    token = DomainServices::User::LoginService.call(params[:email], params[:password])
-    respond_to do |format|
-      format.html do
-        session[:token] = token
-        pp session
-        cookies[:Authorization] = { value: token, expires: 1.day.from_now }.to_json
-        redirect_to root_path
-      end
-      format.json { render json: { token: token }, status: :ok }
-    end
+    generate_jwt
   end
 
-  def register; end
+  def register
+    DomainServices::User::RegisterService.call(params[:email], params[:password], params[:password_confirmation])
+    generate_jwt
+  end
 
   def id
     @editable = 'readonly'
@@ -51,5 +45,17 @@ class UserController < ApplicationController
 
   def redirect_to_root
     redirect_to root_path if session[:user_id].present?
+  end
+
+  def generate_jwt
+    token = DomainServices::User::LoginService.call(params[:email], params[:password])
+    respond_to do |format|
+      format.html do
+        session[:token] = token
+        cookies[:Authorization] = { value: token, expires: 1.day.from_now }.to_json
+        redirect_to root_path
+      end
+      format.json { render json: { token: }, status: :ok }
+    end
   end
 end
