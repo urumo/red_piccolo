@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+
   def authorize_user
-    @current_user = begin
-      DomainServices::User::AuthorizationService.call(request.headers['Authorization'])
+    begin
+      @current_user = DomainServices::User::AuthorizationService.call(request.headers['Authorization'] ||
+                                                                        auth_cookie)
+      # session[:user_id] = @current_user.id
     rescue JWT::DecodeError => _e
       nil
     end
@@ -21,9 +24,13 @@ class ApplicationController < ActionController::Base
     token_header.split(' ').last
   end
 
+  def auth_cookie
+    JSON.parse(request.cookies['Authorization'])['value']['token']
+  end
+
   def redirect_to_login
     respond_to do |format|
-      # format.html { redirect_to auth_url }
+      format.html { redirect_to auth_url }
       format.json { render json: { error: 'Not Authorized' }, status: :unauthorized }
     end
   end

@@ -1,0 +1,41 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <form>
+            <h1 class="title has-text-centered"><%= @user.full_name %></h1>
+
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input class="input" type="email" value="<%= @user.email %>" <%= @editable %>>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">First Name</label>
+              <div class="control">
+                <input class="input" type="text" value="<%= @user.first_name %>" <%= @editable %>>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Last Name</label>
+              <div class="control">
+                <input class="input" type="text" value="<%= @user.last_name %>" <%= @editable %>>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Date of Birth</label>
+              <div class="control">
+                <input class="input" type="date" value="<%= @user.date_of_birth %>" <%= @editable %>>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
