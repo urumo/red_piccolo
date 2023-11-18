@@ -29,7 +29,6 @@ ActiveRecord::Schema[7.1].define(version: 20_231_111_191_919) do
 
   create_table 'users', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'email'
-    t.string 'password'
     t.string 'password_digest'
     t.string 'email_change_token'
     t.string 'password_reset_token'
