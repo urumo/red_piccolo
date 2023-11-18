@@ -1,25 +1,22 @@
-module DomainServices
-    <% modules = name.split('::') %>
-    <% klass = modules.pop %>
-    <% modules.each do |mod| %>
-    module <%= mod %>
-      <% end %>
-      class <%= klass %>Service < ApplicationService
-        <% if attributes.any? %>
-        attr <%= attributes.map {|attr| ":#{attr.name}"}.join ', ' %>
-        <% end %>
-        def initialize(<%= attributes.map {|attr| attr.name}.join ', ' %>)
-          super()
-          <% attributes.each do |attr| %>
-          <%= "@#{attr.name}" %> = <%= attr.name %>
-          <% end %>
-        end
+<% modules = name.split('::') %>
+<% klass = modules.pop %>
+<% modules.each do |mod| %>
+module <%= mod %>
+<% end %>
+class <%= klass %> < ApplicationService
+  attr_reader <%= attributes.map {|attr| ":#{attr.name}"}.join ', ' %>
 
-        def call
-          nil
-        end
-      end
-    <% modules.each do |_mod| %>
-    end
+  def initialize(<%= attributes.map {|attr| attr.name}.join ', ' %>)
+    <% attributes.each do |attr| %>
+    @<%= attr.name %> = <%= attr.name %>
     <% end %>
+    super()
+  end
+
+  def call
+    nil
+  end
 end
+<% modules.reverse.each do |_mod| %>
+end
+<% end %>

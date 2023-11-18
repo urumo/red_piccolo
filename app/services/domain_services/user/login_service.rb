@@ -12,12 +12,21 @@ module DomainServices
       end
 
       def call
-        user = ::User.find_by(email:)
-        raise 'User not found' unless user
+        user = find_user
 
-        raise 'Invalid password' unless user.authenticate(password)
+        validate_password_for(user)
 
         { token: ApplicationServices::JwtService.encode(user_id: user.id) }
+      end
+
+      private
+
+      def find_user
+        ::User.find_by(email:) || raise(DomainErrors::User::NotFoundError)
+      end
+
+      def validate_password_for(user)
+        user.authenticate(password) || raise(DomainErrors::User::InvalidPasswordError)
       end
     end
   end
