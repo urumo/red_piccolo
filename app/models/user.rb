@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_one :user_setting, dependent: :destroy
 
   after_create do
-    UserSetting.create(user: self)
+    UserSetting.create!(user: self)
   end
 
   normalizes :email, with: ->(email) { email.strip.downcase }
