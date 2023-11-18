@@ -6,9 +6,12 @@ ruby '>= 3.0.0'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
+gem 'graphql', '~> 2.1'
+gem 'hotwire-rails', '~> 0.1.3'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'
 gem 'jsbundling-rails'
+gem 'jwt'
 gem 'kredis'
 gem 'msgpack', '~> 1.7'
 gem 'pg', '~> 1.1'
@@ -24,9 +27,12 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :development do
+  gem 'graphiql-rails'
   gem 'rack-mini-profiler'
   gem 'spring'
   gem 'web-console'

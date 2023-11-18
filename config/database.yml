@@ -15,6 +15,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: svck_dev
+  password: K3kChebur#k
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -71,14 +73,14 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-#   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+production:
+  url: <%= ENV["DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: red_piccolo_production
-  username: red_piccolo
-  password: <%= ENV["RED_PICCOLO_DATABASE_PASSWORD"] %>
+#production:
+#  <<: *default
+#  database: red_piccolo_production
+#  username: red_piccolo
+#  password: <%#= ENV["RED_PICCOLO_DATABASE_PASSWORD"] %>

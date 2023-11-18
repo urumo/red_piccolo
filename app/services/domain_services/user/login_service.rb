@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+module DomainServices
+  module User
+    class LoginService < ApplicationService
+      attr_reader :email, :password
+
+      def initialize(email, password)
+        super()
+
+        @email = email
+
+        @password = password
+      end
+
+      def call
+        user = ::User.find_by_email(email)
+        raise DomainErrors::User::NotFoundError, t('user.not_found') unless user
+
+        raise DomainErrors::User::InvalidPasswordError, t('user.invalid_password') unless user.authenticate(password)
+
+        { token: ApplicationServices::JwtService.encode(user_id: user.id) }
+      end
+    end
+  end
+end
