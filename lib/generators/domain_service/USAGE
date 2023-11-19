@@ -1,8 +1,10 @@
 Description:
-    Explain the generator
+    Use this generator to create a new domain service object within the app/domain_services directory.
+    The generator sets up a service class along with a corresponding RSpec test file.
 
 Example:
     bin/rails generate domain_service Thing
 
     This will create:
-        what/will/it/create
+        app/domain_services/thing_service.rb
+        spec/services/thing_service_spec.rb

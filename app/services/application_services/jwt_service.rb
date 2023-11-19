@@ -2,7 +2,11 @@
 
 module ApplicationServices
   class JwtService
-    HMAC_SECRET = ENV.fetch('JWT_SECRET', 'topsecret')
+    HMAC_SECRET = ENV.fetch('JWT_SECRET') do
+      raise ApplicationErrors::Jwt::JWTSecretKeyIsNotSetError if Rails.env.production?
+
+      'topsecret'
+    end
 
     def self.encode(payload = {}, expire = 24.hours.from_now.to_i)
       payload[:exp] = expire

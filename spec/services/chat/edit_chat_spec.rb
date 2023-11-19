@@ -20,11 +20,10 @@ RSpec.describe DomainServices::Chat::EditChatService do
     context 'when user is an admin or the owner' do
       it 'updates the chat' do
         chat.chat_participants.create(user:, user_role: :admin)
-        expect { described_class.call(user, chat, new_chat_title, new_chat_description) }.to change {
-                                                                                               chat.reload.title
-                                                                                             }.to(new_chat_title).and change {
-                                                                                                                        chat.reload.description
-                                                                                                                      }.to(new_chat_description)
+        chat.reload # Reload once before the change matchers
+        expect { described_class.call(user, chat, new_chat_title, new_chat_description) }
+          .to change { chat.title }.to(new_chat_title)
+                                   .and change { chat.description }.to(new_chat_description)
       end
     end
   end

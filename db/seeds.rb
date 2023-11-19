@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # start_time = Time.now
-User.create!(email: 'admin@svck.dev', password: 'P@ssw0rd', role: :superadmin)
 
 # def add_users(chat)
 #   DomainServices::Chat::AddUserToChatService.call(chat, chat.owner, User.all.sample)
@@ -45,3 +44,7 @@ User.create!(email: 'admin@svck.dev', password: 'P@ssw0rd', role: :superadmin)
 #
 # done_time = Time.now
 # puts "Done: #{done_time - start_time}"
+
+email = ENV.fetch('SUPERADMIN_EMAIL', 'admin@svck.dev')
+password = ENV.fetch('SUPERADMIN_PASSWORD', 'P@ssw0rd')
+User.create!(email:, password:, role: :superadmin)

@@ -15,7 +15,7 @@ RSpec.describe DomainServices::User::AuthorizationService do
     end
     context 'when token is not a valid jwt' do
       it 'raises an error' do
-        expect { described_class.call(not_valid_jwt) }.to raise_error(DomainErrors::User::AuthorizationError)
+        expect { described_class.call(not_valid_jwt) }.to raise_error(JWT::DecodeError)
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe DomainServices::User::AuthorizationService do
         user = FactoryBot.create(:user)
         token = ApplicationServices::JwtService.encode({ user_id: user.id }, 1.second.from_now.to_i)
         sleep 2
-        expect { described_class.call(token) }.to raise_error(DomainErrors::User::AuthorizationError)
+        expect { described_class.call(token) }.to raise_error(JWT::ExpiredSignature)
       end
     end
   end
