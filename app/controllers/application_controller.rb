@@ -18,8 +18,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_token
     token_header = request.headers['Authorization']
-
-    return 'Session not found' if token_header.nil?
+    return nil if token_header.nil?
 
     token_header.split(' ').last
   end

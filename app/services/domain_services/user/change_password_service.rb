@@ -14,12 +14,14 @@ module DomainServices
       end
 
       def call
-        raise DomainErrors::User::InvalidPasswordError unless user.authenticate(old_password)
-        raise DomainErrors::User::NewPasswordDoesntMatchError unless new_password == new_password_confirmation
-        raise DomainErrors::User::EmptyPasswordError if new_password.blank?
+        ActiveRecord::Base.transaction do
+          raise DomainErrors::User::InvalidPasswordError unless user.authenticate(old_password)
+          raise DomainErrors::User::NewPasswordDoesntMatchError unless new_password == new_password_confirmation
+          raise DomainErrors::User::EmptyPasswordError if new_password.blank?
 
-        user.password = new_password
-        user.save!
+          user.password = new_password
+          user.save!
+        end
       end
     end
   end

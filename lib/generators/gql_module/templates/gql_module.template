@@ -6,6 +6,7 @@ module Modules
       <% end %>
       module <%= klass %>
         extend Modules::GqlErrorHandler
+        extend Modules::AuthHandler
         <% attributes.map do |attr| %>
         def <%= attr.name %>; end
         <% end %>

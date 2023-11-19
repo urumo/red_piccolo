@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get '/', to: 'user#index'
     get '/auth', to: 'user#auth'
     post '/login', to: 'user#login'
+    delete '/logout', to: 'user#logout'
     post '/register', to: 'user#register'
     put '/block', to: 'user#block'
     put '/settings', to: 'user#settings'

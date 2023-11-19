@@ -7,13 +7,15 @@ module Mutations
     argument :user_details, Types::UserInputType, required: true
 
     def resolve(user_details:)
-      user = DomainServices::User::AddUserDatumService.call(
-        DomainServices::User::AuthorizationService.call(context[:token]), user_details.first_name,
-        user_details.last_name, user_details.date_of_birth
-      )
-      { user: }
-    rescue StandardError => e
-      GraphQL::ExecutionError.new(e.message)
+      with_error_handling do
+        with_authorization do
+          user = DomainServices::User::AddUserDatumService.call(
+            @current_user, user_details.first_name,
+            user_details.last_name, user_details.date_of_birth
+          )
+          { user: }
+        end
+      end
     end
   end
 end

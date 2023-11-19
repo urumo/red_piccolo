@@ -10,13 +10,17 @@ module Mutations
 
     # TODO: define resolve method
     def resolve(old_password:, new_password:, new_password_confirmation:)
-      success = DomainServices::User::ChangePasswordService.call(
-        DomainServices::User::AuthorizationService.call(context[:token]),
-        old_password,
-        new_password,
-        new_password_confirmation
-      )
-      { success: }
+      with_error_handling do
+        with_authorization do
+          success = DomainServices::User::ChangePasswordService.call(
+            @current_user,
+            old_password,
+            new_password,
+            new_password_confirmation
+          )
+          { success: }
+        end
+      end
     end
   end
 end

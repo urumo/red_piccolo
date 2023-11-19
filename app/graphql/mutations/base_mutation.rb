@@ -2,6 +2,8 @@
 
 module Mutations
   class BaseMutation < GraphQL::Schema::RelayClassicMutation
+    include Modules::GqlErrorHandler
+    include Modules::User::AuthHandler
     argument_class Types::BaseArgument
     field_class Types::BaseField
     input_object_class Types::BaseInputObject

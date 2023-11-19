@@ -3,37 +3,65 @@
     <div class="columns is-centered">
       <div class="column is-half">
         <div class="box">
-          <form>
+          <%= form_tag(settings_url, method: :put) do %>
             <h1 class="title has-text-centered"><%= @user.full_name %></h1>
 
             <div class="field">
-              <label class="label">Email</label>
+              <%= label_tag :email, nil, class: 'label' %>
               <div class="control">
-                <input class="input" type="email" value="<%= @user.email %>" <%= @editable %>>
+                <%= email_field_tag :email, @user.email, class: 'input', placeholder: 'Enter your Email', readonly: !@editable %>
               </div>
             </div>
 
             <div class="field">
-              <label class="label">First Name</label>
+              <%= label_tag :first_name, nil, class: 'label' %>
               <div class="control">
-                <input class="input" type="text" value="<%= @user.first_name %>" <%= @editable %>>
+                <%= text_field_tag :first_name, @user.first_name, class: 'input', placeholder: 'Enter your first name', readonly: !@editable %>
               </div>
             </div>
 
             <div class="field">
-              <label class="label">Last Name</label>
+              <%= label_tag :last_name, nil, class: 'label' %>
               <div class="control">
-                <input class="input" type="text" value="<%= @user.last_name %>" <%= @editable %>>
+                <%= text_field_tag :last_name, @user.last_name, class: 'input', placeholder: 'Enter your last name', readonly: !@editable %>
               </div>
             </div>
 
             <div class="field">
-              <label class="label">Date of Birth</label>
+              <%= label_tag "Date of Birth", nil, class: 'label' %>
               <div class="control">
-                <input class="input" type="date" value="<%= @user.date_of_birth %>" <%= @editable %>>
+                <%= date_field_tag :date_of_birth, @user.date_of_birth, class: 'input', readonly: !@editable %>
               </div>
             </div>
-          </form>
+
+            <% if @editable %>
+              <h6 class="has-text-centered">Change your password(leave blank to skip)</h6>
+              <div class="field">
+                <%= label_tag :old_password, nil, class: 'label' %>
+                <div class="control">
+                  <%= password_field_tag :old_password, nil, class: 'input', placeholder: 'Enter your password' %>
+                </div>
+              </div>
+              <div class="field">
+                <%= label_tag :new_password, nil, class: 'label' %>
+                <div class="control">
+                  <%= password_field_tag :new_password, nil, class: 'input', placeholder: 'Enter your new password' %>
+                </div>
+              </div>
+              <div class="field">
+                <%= label_tag :new_password_confirmation, nil, class: 'label' %>
+                <div class="control">
+                  <%= password_field_tag :new_password_confirmation, nil, class: 'input', placeholder: 'Confirm your new password' %>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <%= submit_tag 'Edit', class: 'button is-info is-fullwidth' %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
