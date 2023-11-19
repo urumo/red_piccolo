@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_231_113_061_954) do
+ActiveRecord::Schema[7.1].define(version: 20_231_113_225_957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -23,6 +23,45 @@ ActiveRecord::Schema[7.1].define(version: 20_231_113_061_954) do
     t.datetime 'lift_date'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+  end
+
+  create_table 'chat_messages', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'chat_id', null: false
+    t.uuid 'user_id', null: false
+    t.text 'content'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['chat_id'], name: 'index_chat_messages_on_chat_id'
+    t.index ['user_id'], name: 'index_chat_messages_on_user_id'
+  end
+
+  create_table 'chat_participants', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'chat_id', null: false
+    t.uuid 'user_id', null: false
+    t.integer 'user_role'
+    t.boolean 'is_kicked'
+    t.boolean 'is_blocked'
+    t.boolean 'is_restricted'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'user_admin_name', default: 'member'
+    t.index ['chat_id'], name: 'index_chat_participants_on_chat_id'
+    t.index ['user_id'], name: 'index_chat_participants_on_user_id'
+  end
+
+  create_table 'chats', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'title'
+    t.string 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'message_histories', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'chat_message_id', null: false
+    t.text 'content'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['chat_message_id'], name: 'index_message_histories_on_chat_message_id'
   end
 
   create_table 'user_settings', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
@@ -49,5 +88,10 @@ ActiveRecord::Schema[7.1].define(version: 20_231_113_061_954) do
 
   add_foreign_key 'blocked_users', 'users'
   add_foreign_key 'blocked_users', 'users', column: 'other_user_id'
+  add_foreign_key 'chat_messages', 'chats'
+  add_foreign_key 'chat_messages', 'users'
+  add_foreign_key 'chat_participants', 'chats'
+  add_foreign_key 'chat_participants', 'users'
+  add_foreign_key 'message_histories', 'chat_messages'
   add_foreign_key 'user_settings', 'users'
 end
