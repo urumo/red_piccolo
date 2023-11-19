@@ -2,7 +2,7 @@
 
 module ApplicationErrors
   module Jwt
-    class JWTSecretKeyIsNotSet
+    class JWTSecretKeyIsNotSetError
     end
   end
 end
