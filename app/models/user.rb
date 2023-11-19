@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
   has_one :user_setting, dependent: :destroy
@@ -19,8 +21,8 @@ class User < ApplicationRecord
                        if: :password_present?
   validates :password, format: { with: /[a-z]/, message: I18n.t('user.password.lowercase_missing') },
                        if: :password_present?
-                       if: :password_present?
   validates :password, format: { with: /\W/, message: I18n.t('user.password.special_character_missing') },
+                       if: :password_present?
 
   private
 
