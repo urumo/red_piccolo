@@ -10,7 +10,7 @@ RSpec.describe DomainServices::User::AddUserDatumService do
 
   subject { described_class.call(user, first_name, last_name, date_of_birth) }
   describe '#call' do
-    context 'changes first name' do
+    context 'changes only first name' do
       let(:last_name) { nil }
       let(:date_of_birth) { nil }
       it 'returns user with changed first name' do
@@ -19,7 +19,7 @@ RSpec.describe DomainServices::User::AddUserDatumService do
       end
     end
 
-    context 'changes last name' do
+    context 'changes only last name' do
       let(:first_name) { nil }
       let(:date_of_birth) { nil }
       it 'returns user with changed last name' do
@@ -28,7 +28,7 @@ RSpec.describe DomainServices::User::AddUserDatumService do
       end
     end
 
-    context 'changes date of birth' do
+    context 'changes only date of birth' do
       let(:first_name) { nil }
       let(:last_name) { nil }
       it 'returns user with changed date of birth' do
