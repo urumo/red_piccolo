@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :blocked_user do
-    user { nil }
-    other_user { nil }
-    lift_date { '2023-11-13 10:19:54' }
+    association :user
+    association :other_user, factory: :user
+    lift_date { Time.now + 1.week }
   end
 end
