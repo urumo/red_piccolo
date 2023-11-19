@@ -28,8 +28,9 @@ RSpec.describe DomainServices::User::AddUserDatumService do
     end
 
     context 'changes first name, last name and date of birth' do
+      subject { described_class.call(user, first_name, last_name, date_of_birth) }
       it 'returns user with changed first name, last name and date of birth' do
-        described_class.call(user, first_name, last_name, date_of_birth)
+        subject
         expect(user.user_setting.first_name).to eq(first_name)
         expect(user.user_setting.last_name).to eq(last_name)
         expect(user.user_setting.date_of_birth).to eq(date_of_birth)
