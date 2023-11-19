@@ -10,7 +10,7 @@ class User < ApplicationRecord
   enum role: { user: 0, moderator: 1, admin: 2, superadmin: 3 }
 
   after_create do
-    UserSetting.create(user: self)
+    UserSetting.create!(user: self)
   end
 
   normalizes :email, with: ->(email) { email.strip.downcase }

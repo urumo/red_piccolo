@@ -14,7 +14,7 @@ module DomainServices
       def call
         raise DomainErrors::Chat::ChatOwnerError if chat.owner != user
 
-        chat.destroy!
+        ActiveRecord::Base.transaction { chat.destroy! }
 
         chat
       end

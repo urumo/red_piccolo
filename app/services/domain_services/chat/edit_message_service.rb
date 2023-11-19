@@ -15,8 +15,10 @@ module DomainServices
       def call
         raise DomainErrors::Chat::EditMessageOwnerError unless message.user == user
 
-        message.content = new_content
-        message.save!
+        ActiveRecord::Base.transaction do
+          message.content = new_content || message.content
+          message.save!
+        end
         message
       end
     end

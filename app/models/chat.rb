@@ -9,7 +9,7 @@ class Chat < ApplicationRecord
   def admins = users.where(chat_participants: { user_role: :admin })
 
   after_create do
-    chat_participants.update(user: users.first, user_role: :owner) unless owner
+    chat_participants.update!(user: users.first, user_role: :owner) unless owner
   end
   def admin_or_owner?(user) = admins.include?(user) || owner == user
 end

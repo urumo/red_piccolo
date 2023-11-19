@@ -6,7 +6,7 @@ RSpec.describe DomainServices::Chat::AddUserToChatService do
   let(:chat) { FactoryBot.build(:chat) }
   let(:user) { FactoryBot.build(:user4) }
 
-  setup do
+  before do
     chat.save!
     user.save!
   end

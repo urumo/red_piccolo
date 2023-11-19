@@ -17,9 +17,10 @@ RSpec.describe DomainServices::Chat::DeleteMessageService do
       it 'deletes the message' do
         message = chat.chat_messages.first
         expect { described_class.call(message.user, message) }
-          .to(change { ChatMessage.count }.by(-1))
-        # .and(
-        #   change { MessageHistory.count }.by(-1))
+          .to(change { ChatMessage.count }.by(-1)
+                .and(
+                  change { MessageHistory.count }.by(-1)
+                ))
       end
 
       it 'deletes the message and history of the message' do
