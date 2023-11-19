@@ -3,9 +3,11 @@
 class CreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users, id: :uuid do |t|
-      t.string :email
-      t.string :password
+      t.string :email, null: false
       t.string :password_digest
+      t.string :email_change_token
+      t.string :password_reset_token
+      t.string :password_salt
 
       t.timestamps
     end
