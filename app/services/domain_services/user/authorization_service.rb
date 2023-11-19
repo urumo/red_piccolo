@@ -12,9 +12,8 @@ module DomainServices
       end
 
       def call
-        id = ApplicationServices::JwtService.decode(token)
-
-        ::User.find(id)
+        payload = ApplicationServices::JwtService.decode(token)
+        ::User.find(payload['user_id'])
       end
     end
   end

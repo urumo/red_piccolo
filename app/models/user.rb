@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_secure_password :password
+  has_secure_password
   has_one :user_setting, dependent: :destroy
+  has_many :blocked_users, dependent: :destroy
+  enum role: { user: 0, moderator: 1, admin: 2, superadmin: 3 }
 
   after_create do
     UserSetting.create!(user: self)

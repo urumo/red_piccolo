@@ -3,7 +3,7 @@
 module ApplicationServices
   class JwtService
     HMAC_SECRET = ENV.fetch('JWT_SECRET') do
-      raise ApplicationErrors::Jwt::JWTSecretKeyIsNotSet unless Rails.env.development? || Rails.env.test?
+      raise ApplicationErrors::Jwt::JWTSecretKeyIsNotSetError if Rails.env.production?
 
       'topsecret'
     end
@@ -15,7 +15,7 @@ module ApplicationServices
     end
 
     def self.decode(token)
-      JWT.decode(token, HMAC_SECRET, true, algorithm: 'HS512')
+      JWT.decode(token, HMAC_SECRET, true, algorithm: 'HS512').first
     end
   end
 end
