@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :chat_message do
     chat { nil }
     user { nil }
-    content { 'MyText' }
+    content { Faker::Lorem.sentence }
   end
 end

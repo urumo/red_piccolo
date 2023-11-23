@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  def index; end
+  def index
+    with_http_error_handling do
+    end
+  end
 end

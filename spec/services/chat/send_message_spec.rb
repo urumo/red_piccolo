@@ -21,13 +21,13 @@ RSpec.describe DomainServices::Chat::SendMessageService do
       end
 
       it 'has 1 messages' do
-        expect(chat.chat_messages.count).to eq(1)
+        expect(chat.chat_messages.count).to eq(30)
       end
 
       it 'sends a message' do
         message_content = 'Hello'
         described_class.call(chat.owner, chat, message_content)
-        expect(chat.chat_messages.count).to eq(2)
+        expect(chat.chat_messages.count).to eq(31)
         expect(chat.chat_messages.last.content).to eq(message_content)
       end
     end

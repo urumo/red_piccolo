@@ -1,0 +1,17 @@
+module Modules
+    <% modules = name.split('::') %>
+    <% klass = modules.pop %>
+    <% modules.each do |mod| %>
+    module <%= mod %>
+      <% end %>
+      module <%= klass %>
+        extend Modules::GqlErrorHandler
+        extend Modules::AuthHandler
+        <% attributes.map do |attr| %>
+        def <%= attr.name %>; end
+        <% end %>
+      end
+    <% modules.each do |_mod| %>
+    end
+    <% end %>
+end
