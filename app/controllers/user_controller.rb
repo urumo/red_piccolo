@@ -7,22 +7,30 @@ class UserController < ApplicationController
   before_action :set_editable, only: %i[index id]
 
   def index
-    @user = @current_user
+    with_http_error_handling do
+      @user = @current_user
+    end
   end
 
   def logout
-    session[:token] = nil
-    cookies.delete(:token)
-    redirect_to root_path
+    with_http_error_handling do
+      session[:token] = nil
+      cookies.delete(:token)
+      redirect_to root_path
+    end
   end
 
   def login
-    generate_jwt
+    with_http_error_handling do
+      generate_jwt
+    end
   end
 
   def register
-    DomainServices::User::RegisterService.call(params[:email], params[:password], params[:password_confirmation])
-    generate_jwt
+    with_http_error_handling do
+      DomainServices::User::RegisterService.call(params[:email], params[:password], params[:password_confirmation])
+      generate_jwt
+    end
   end
 
   def id; end
@@ -30,16 +38,20 @@ class UserController < ApplicationController
   def block; end
 
   def settings
-    update_user_settings(params)
-    change_password(params)
-    respond_to do |format|
-      format.html { redirect_to root_path }
-      format.json { render json: { status: :ok }, status: :ok }
+    with_http_error_handling do
+      update_user_settings(params)
+      change_password(params)
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: { status: :ok }, status: :ok }
+      end
     end
   end
 
   def auth
-    redirect_to root_path if @current_user
+    with_http_error_handling do
+      redirect_to root_path if @current_user
+    end
   end
 
   private

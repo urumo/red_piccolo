@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Modules::HttpErrorHandler
+  add_flash_types :success, :warning, :danger, :info
+
   def authorize_user
-    begin
+    with_http_error_handling do
       token = request.headers['Authorization'] || auth_cookie || session[:token]
       @current_user = DomainServices::User::AuthorizationService.call(token)
     rescue DomainErrors::User::AuthorizationError
       cookies.signed.encrypted[:token] = nil
       session[:token] = nil
       nil
+    ensure
+      redirect_to_login if @current_user.nil?
     end
-
-    redirect_to_login if @current_user.nil?
   end
 
   protected
