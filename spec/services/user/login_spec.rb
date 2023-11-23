@@ -10,7 +10,7 @@ RSpec.describe DomainServices::User::LoginService do
   describe '#call with correct credentials' do
     it 'returns a token' do
       result = DomainServices::User::LoginService.call(@user.email, 'P@ssw0rd')
-      expect(result[:token]).to be_a(String)
+      expect(result).to be_a(String)
     end
   end
 

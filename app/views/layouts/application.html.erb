@@ -1,18 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RedPiccolo</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>RedPiccolo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "bulma", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "bulma", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="<%= root_path %>">
+      <img src="https://fontmeme.com/permalink/231119/2b6f87239350a6f3e505185fcfc6090b.png" width="112" height="50">
+    </a>
+
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+    <div class="navbar-end">
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if session[:token].present? %>
+            <%= form_tag(logout_path, method: :delete) do %>
+              <%= submit_tag "Log out", class: 'button is-danger' %>
+            <% end %>
+          <% else %>
+            <a class="button is-primary" href="<%= auth_url %>?form_action=register">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" href="<%= auth_url %>?form_action=login">
+              Log in
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<%= yield %>
+</body>
 </html>

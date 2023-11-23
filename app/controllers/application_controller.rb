@@ -3,11 +3,11 @@
 class ApplicationController < ActionController::Base
   def authorize_user
     begin
-      @current_user = DomainServices::User::AuthorizationService.call(request.headers['Authorization'] ||
-                                                                        auth_cookie)
+      token = request.headers['Authorization'] || auth_cookie || session[:token]
+      @current_user = DomainServices::User::AuthorizationService.call(token)
     rescue DomainErrors::User::AuthorizationError
-      cookies.delete(:Authorization)
-      session[:user_id] = nil
+      cookies.signed.encrypted[:token] = nil
+      session[:token] = nil
       nil
     end
 
@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_cookie
-    JSON.parse(request.cookies['Authorization'])['value']['token']
+    cookie = cookies.signed.encrypted[:token]
+    @auth_cookie ||= JSON.parse(cookie)['value'] unless cookie.nil?
   end
 
   def redirect_to_login

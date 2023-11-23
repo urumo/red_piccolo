@@ -11,8 +11,8 @@ class UserController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
-    cookies.delete(:Authorization)
+    session[:token] = nil
+    cookies.delete(:token)
     redirect_to root_path
   end
 
@@ -81,7 +81,7 @@ class UserController < ApplicationController
     respond_to do |format|
       format.html do
         session[:token] = token
-        cookies[:Authorization] = { value: token, expires: 1.day.from_now }.to_json
+        cookies.signed.encrypted[:token] = { value: token, expires: 1.day.from_now }.to_json
         redirect_to root_path
       end
       format.json { render json: { token: }, status: :ok }

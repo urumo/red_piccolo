@@ -16,7 +16,7 @@ module DomainServices
 
         validate_password_for(user)
 
-        { token: ApplicationServices::JwtService.encode(user_id: user.id) }
+        ApplicationServices::JwtService.encode(user_id: user.id)
       end
 
       private
