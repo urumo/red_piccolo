@@ -48,12 +48,7 @@
 </nav>
 <% flash.each_with_index do |type_and_message, index| %>
   <div id="<%= type_and_message.first %>-<%=index %>" class="notification is-<%= type_and_message.first %>">
-    <button
-      hx-trigger="click delay:500ms"
-      hx-target="#<%= type_and_message.first %>-<%=index %>"
-      hx-swap="delete"
-      hx-confirm="Are you sure you wish to delete your account?"
-      class="delete"></button>
+    <button class="delete"></button>
     <%= type_and_message.last %>
   </div>
 <% end %>
