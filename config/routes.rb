@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     post '/login', to: 'user#login'
     delete '/logout', to: 'user#logout'
     post '/register', to: 'user#register'
-    put '/block', to: 'user#block'
-    put '/settings', to: 'user#settings'
+    patch '/block', to: 'user#block'
+    patch '/settings', to: 'user#settings'
     get '/id/:id', to: 'user#id'
   end
 
