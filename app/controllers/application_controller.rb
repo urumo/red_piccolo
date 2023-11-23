@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Modules::HttpErrorHandler
+  # include Modules::WithTransaction
   add_flash_types :success, :warning, :danger, :info
 
   def authorize_user
