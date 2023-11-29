@@ -22,7 +22,7 @@ rescue StandardError
                                          key: SESSION_KEY,
                                          expire_after: 1.day,
                                          secure: Rails.env.production?,
-                                         httponly: false,
+                                         httponly: true,
                                          same_site: :strict
   Rails.logger.info 'Cookie Session Store configured'
 end
