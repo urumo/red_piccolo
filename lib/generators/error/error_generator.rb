@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
-class ErrorGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path('templates', __dir__)
+module Generators
+  module Error
+    class ErrorGenerator < Rails::Generators::NamedBase
+      source_root File.expand_path('templates', __dir__)
 
-  def create_error_file
-    template 'error.template', "app/errors/domain_errors/#{file_path}_error.rb"
+      def create_error_file
+        template 'error.template', "app/errors/domain_errors/#{file_path}_error.rb"
+      end
+      argument :name, type: :string
+    end
   end
-  argument :name, type: :string
 end
