@@ -1,0 +1,56 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+  - rubocop-graphql
+
+
+# disable Style/Documentation
+Style/Documentation:
+  Enabled: false
+
+# disable Metrics/BlockLength for specs and db folders
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'config/environments/*'
+
+# extend Metrics/MethodLength
+Metrics/MethodLength:
+  Max: 20
+
+# extend Metrics/AbcSize
+Metrics/AbcSize:
+  Max: 30
+
+# extend Metrics/PerceivedComplexity
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# extend Metrics/CyclomaticComplexity
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+# extend RSpec/MultipleExpectations
+RSpec/MultipleExpectations:
+  Max: 5
+
+# extend RSpec/ExampleLength
+RSpec/ExampleLength:
+  Max: 50
+
+# disable GraphQL/ExtractInputType
+GraphQL/ExtractInputType:
+  Enabled: false

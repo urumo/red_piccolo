@@ -2,11 +2,12 @@
 
 module Mutations
   class ChangePassword < BaseMutation
-    field :success, GraphQL::Types::Boolean, null: false
+    description 'Change password'
+    field :success, GraphQL::Types::Boolean, null: false, description: 'Success'
 
-    argument :old_password, String, required: true
-    argument :new_password, String, required: true
-    argument :new_password_confirmation, String, required: true
+    argument :new_password, String, required: true, description: 'New password'
+    argument :new_password_confirmation, String, required: true, description: 'New password confirmation'
+    argument :old_password, String, required: true, description: 'Old password'
 
     # TODO: define resolve method
     def resolve(old_password:, new_password:, new_password_confirmation:)

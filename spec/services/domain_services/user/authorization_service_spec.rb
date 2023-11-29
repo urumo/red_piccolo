@@ -13,6 +13,7 @@ RSpec.describe DomainServices::User::AuthorizationService do
         expect(described_class.call(token)).to eq(user)
       end
     end
+
     context 'when token is not a valid jwt' do
       it 'raises an error' do
         expect { described_class.call(not_valid_jwt) }.to raise_error(DomainErrors::User::AuthorizationError)

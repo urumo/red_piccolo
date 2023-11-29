@@ -19,7 +19,6 @@ gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.2'
 gem 'redis', '>= 4.0.1'
 gem 'redis-session-store', '~> 0.11.5'
-gem 'rubocop', '~> 1.57'
 gem 'sidekiq', '~> 7.2'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
@@ -31,6 +30,11 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 6.0'
+  gem 'rubocop', '~> 1.57'
+  gem 'rubocop-factory_bot', '~> 2.24'
+  gem 'rubocop-graphql', '~> 1.4'
+  gem 'rubocop-rails', '~> 2.22'
+  gem 'rubocop-rspec', '~> 2.25'
 end
 
 group :development do

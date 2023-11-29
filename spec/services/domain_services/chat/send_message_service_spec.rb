@@ -7,7 +7,7 @@ RSpec.describe DomainServices::Chat::SendMessageService do
   let(:user) { FactoryBot.create(:user4) }
 
   describe '#call' do
-    context 'chat is correct' do
+    context 'when chat is correct' do
       it 'has an owner' do
         expect(chat.owner).to be_present
       end
@@ -32,7 +32,7 @@ RSpec.describe DomainServices::Chat::SendMessageService do
       end
     end
 
-    context 'user is not in chat' do
+    context 'when user is not in chat' do
       it 'throws an error' do
         expect do
           described_class.call(user, chat, 'Hello')

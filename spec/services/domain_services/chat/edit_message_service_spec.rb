@@ -7,11 +7,10 @@ RSpec.describe DomainServices::Chat::EditMessageService do
   let(:new_content) { 'new content' }
 
   describe '#call' do
-    context 'chat' do
-      it 'has 1 message' do
-        expect(chat.chat_messages.count).to eq(30)
-      end
+    it 'has 1 message' do
+      expect(chat.chat_messages.count).to eq(30)
     end
+
     context 'when user is not the owner of the message' do
       it 'raises an error' do
         message = chat.chat_messages.first
@@ -32,9 +31,10 @@ RSpec.describe DomainServices::Chat::EditMessageService do
       it 'adds the old message to the history' do
         message = chat.chat_messages.first
         user = message.user
-        expect { described_class.call(user, message, 'some new content') }.to change { MessageHistory.count }.by(1)
+        expect { described_class.call(user, message, 'some new content') }.to change(MessageHistory, :count).by(1)
       end
-      it 'should have the old message in the history' do
+
+      it 'has the old message in the history' do
         message = chat.chat_messages.first
         user = message.user
         new_content = 'some new content'

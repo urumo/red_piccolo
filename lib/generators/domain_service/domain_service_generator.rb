@@ -9,7 +9,7 @@ module Generators
       def create_domain_service_file
         create_directories
         template 'domain_service.template', "app/services/domain_services/#{file_path}_service.rb"
-        template 'service_test.template', "spec/services/#{file_path}_spec.rb"
+        template 'service_test.template', "spec/services/domain_services/#{file_path}_service_spec.rb"
       end
 
       argument :name, type: :string
@@ -18,7 +18,7 @@ module Generators
       def create_directories
         FileUtils.mkdir_p('app/services/domain_services') unless File.directory?('app/services/domain_services')
 
-        FileUtils.mkdir_p('spec/services') unless File.directory?('spec/services')
+        FileUtils.mkdir_p('spec/services/domain_services') unless File.directory?('spec/services/domain_services')
       end
     end
   end

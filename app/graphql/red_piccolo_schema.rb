@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RedPiccoloSchema < GraphQL::Schema
+  max_depth 10
+  max_complexity 1000
   mutation(Types::MutationType)
   query(Types::QueryType)
 

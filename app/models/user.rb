@@ -13,11 +13,11 @@ class User < ApplicationRecord
     UserSetting.create!(user: self)
   end
 
-  def first_name = user_setting.first_name
+  delegate :first_name, to: :user_setting
 
-  def last_name = user_setting.last_name
+  delegate :last_name, to: :user_setting
 
-  def date_of_birth = user_setting.date_of_birth
+  delegate :date_of_birth, to: :user_setting
 
   def full_name
     name = user_setting.full_name
@@ -26,8 +26,8 @@ class User < ApplicationRecord
 
   normalizes :email, with: ->(email) { email.strip.downcase }
 
-  validates_presence_of :email
-  validates_uniqueness_of :email, message: I18n.t('user.email_already_taken')
+  validates :email, presence: true
+  validates :email, uniqueness: { message: I18n.t('user.email_already_taken') }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: I18n.t('user.not_a_valid_email') }
   validates :password, length: { minimum: 8, message: I18n.t('user.password.too_short', count: 8) },

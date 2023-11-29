@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe DomainServices::Chat::DeleteMessageService do
   let(:chat) { FactoryBot.create(:chat) }
   let(:user) { FactoryBot.create(:user4) }
+
   describe '#call' do
     context 'when user is not the owner of the message' do
       it 'raises an error' do
@@ -17,9 +18,9 @@ RSpec.describe DomainServices::Chat::DeleteMessageService do
       it 'deletes the message' do
         message = chat.chat_messages.first
         expect { described_class.call(message.user, message) }
-          .to(change { ChatMessage.count }.by(-1)
+          .to(change(ChatMessage, :count).by(-1)
                 .and(
-                  change { MessageHistory.count }.by(-1)
+                  change(MessageHistory, :count).by(-1)
                 ))
       end
 
@@ -27,10 +28,10 @@ RSpec.describe DomainServices::Chat::DeleteMessageService do
         message = chat.chat_messages.first
         message.update!(content: 'updated content')
         expect { described_class.call(message.user, message) }
-          .to(change { ChatMessage.count }
+          .to(change(ChatMessage, :count)
                 .by(-1)
                 .and(
-                  change { MessageHistory.count }.by(-2)
+                  change(MessageHistory, :count).by(-2)
                 ))
       end
     end

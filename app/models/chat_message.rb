@@ -5,8 +5,8 @@ class ChatMessage < ApplicationRecord
   belongs_to :user
   has_many :message_histories, dependent: :destroy
 
-  validates_presence_of :content
-  validates_length_of :content, minimum: 1
+  validates :content, presence: true
+  validates :content, length: { minimum: 1 }
 
   def history = message_histories.order(created_at: :desc).map do |history|
     {
