@@ -40,5 +40,3 @@ group :development do
   gem 'spring'
   gem 'web-console'
 end
-
-gem 'log4r', '~> 1.1'
