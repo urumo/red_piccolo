@@ -93,7 +93,6 @@ class UserController < ApplicationController
     respond_to do |format|
       format.html do
         session[:token] = token
-        cookies.signed.encrypted[:token] = { value: token, expires: 1.day.from_now }.to_json
         redirect_to root_path
       end
       format.json { render json: { token: }, status: :ok }

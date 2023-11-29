@@ -4,7 +4,7 @@ module DomainServices
     <% modules.each do |mod| %>
     module <%= mod %>
     <% end %>
-    class <%= klass %> < ApplicationService
+    class <%= klass %>Service < ApplicationService
       attr_reader <%= attributes.map {|attr| ":#{attr.name}"}.join ', ' %>
 
       def initialize(<%= attributes.map {|attr| attr.name}.join ', ' %>)

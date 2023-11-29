@@ -3,8 +3,6 @@
 module DomainServices
   module Chat
     class FindMessageService < ApplicationService
-      GLOBAL_SEARCH = 'user_id = ? and content like ?'
-      CHAT_SEARCH = "#{GLOBAL_SEARCH} and chat_id = ?}".freeze
       attr_reader :user, :chat, :content
 
       def initialize(user, chat, content)

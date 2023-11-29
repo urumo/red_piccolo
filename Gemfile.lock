@@ -137,6 +137,7 @@ GEM
       activesupport (>= 6.0.0)
       redis (>= 4.2, < 6)
     language_server-protocol (3.17.0.3)
+    log4r (1.1.10)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -224,6 +225,9 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.18.0)
       connection_pool
+    redis-session-store (0.11.5)
+      actionpack (>= 6, < 8)
+      redis (>= 3, < 6)
     regexp_parser (2.8.2)
     reline (0.4.0)
       io-console (~> 0.5)
@@ -319,12 +323,14 @@ DEPENDENCIES
   jsbundling-rails
   jwt
   kredis
+  log4r (~> 1.1)
   msgpack (~> 1.7)
   pg (~> 1.1)
   puma (>= 5.0)
   rack-mini-profiler
   rails (~> 7.1.2)
   redis (>= 4.0.1)
+  redis-session-store (~> 0.11.5)
   rspec-rails (~> 6.0)
   rubocop (~> 1.57)
   sidekiq (~> 7.2)

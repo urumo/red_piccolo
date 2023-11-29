@@ -2,15 +2,13 @@
 
 class ApplicationController < ActionController::Base
   include Modules::HttpErrorHandler
-  # include Modules::WithTransaction
+  before_action :current_user
   add_flash_types :success, :warning, :danger, :info
 
   def authorize_user
     with_http_error_handling do
-      token = request.headers['Authorization'] || auth_cookie || session[:token]
-      @current_user = DomainServices::User::AuthorizationService.call(token)
+      raise DomainErrors::User::AuthorizationError if current_user.nil?
     rescue DomainErrors::User::AuthorizationError
-      cookies.signed.encrypted[:token] = nil
       session[:token] = nil
       nil
     ensure
@@ -20,16 +18,19 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def current_user
+    token = request.headers['Authorization'] || session[:token]
+
+    @current_user = DomainServices::User::AuthorizationService.call(token)
+  rescue StandardError
+    nil
+  end
+
   def current_user_token
     token_header = request.headers['Authorization']
     return nil if token_header.nil?
 
     token_header.split(' ').last
-  end
-
-  def auth_cookie
-    cookie = cookies.signed.encrypted[:token]
-    @auth_cookie ||= JSON.parse(cookie)['value'] unless cookie.nil?
   end
 
   def redirect_to_login

@@ -14,9 +14,15 @@ class User < ApplicationRecord
   end
 
   def first_name = user_setting.first_name
+
   def last_name = user_setting.last_name
+
   def date_of_birth = user_setting.date_of_birth
-  def full_name = "#{first_name} #{last_name}"
+
+  def full_name
+    name = user_setting.full_name
+    @full_name ||= name.strip.empty? ? email : name
+  end
 
   normalizes :email, with: ->(email) { email.strip.downcase }
 

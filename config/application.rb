@@ -40,6 +40,8 @@ module RedPiccolo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    # config.eager_load_paths += Dir[Rails.root.join('app', 'services', '**/')]
+    config.logger = Logger.new($stdout)
+                          .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+                          .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
   end
 end

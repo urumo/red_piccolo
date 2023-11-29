@@ -13,41 +13,47 @@
 </head>
 
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="<%= root_path %>">
-      <img src="https://fontmeme.com/permalink/231119/2b6f87239350a6f3e505185fcfc6090b.png" width="112" height="50">
-    </a>
 
-  </div>
+<!--<nav class="navbar" role="navigation" aria-label="main navigation">-->
+<!--  <div class="navbar-brand">-->
+<!--    <a class="navbar-item" href="<%#= root_path %>">-->
+<!--      <img src="https://fontmeme.com/permalink/231119/2b6f87239350a6f3e505185fcfc6090b.png" width="112" height="50">-->
+<!--    </a>-->
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-    </div>
-    <div class="navbar-end">
-    </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <% if session[:token].present? %>
-            <%= form_tag(logout_path, method: :delete) do %>
-              <%= submit_tag "Log out", class: 'button is-danger' %>
-            <% end %>
-          <% else %>
-            <a class="button is-primary" href="<%= auth_url %>?form_action=register">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light" href="<%= auth_url %>?form_action=login">
-              Log in
-            </a>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+<!--  </div>-->
+
+<!--  <div id="navbarBasicExample" class="navbar-menu">-->
+<!--    <div class="navbar-start">-->
+<!--    </div>-->
+<!--    <div class="navbar-end">-->
+<!--    </div>-->
+<!--    <div class="navbar-end">-->
+<!--      <div class="navbar-item">-->
+<!--        <div class="buttons">-->
+          <%# if session[:token].present? || cookies[:token].present? %>
+            <%#= link_to(@current_user.full_name, '/identity', class: 'button') %>
+            <%#= form_tag(logout_path, method: :delete) do %>
+              <%#= submit_tag "Log out", class: 'button is-danger' %>
+            <%# end %>
+          <%# else %>
+<!--            <a class="button is-primary" href="<%#= auth_url %>?form_action=register">-->
+<!--              <strong>Sign up</strong>-->
+<!--            </a>-->
+<!--            <a class="button is-light" href="<%#= auth_url %>?form_action=login">-->
+<!--              Log in-->
+<!--            </a>-->
+
+          <%# end %>
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
 <% flash.each_with_index do |type_and_message, index| %>
-  <div id="<%= type_and_message.first %>-<%=index %>" class="notification is-<%= type_and_message.first %>">
+  <div id="<%= type_and_message.first %>-<%= index %>" class="notification is-<%= type_and_message.first %>">
     <button class="delete"></button>
     <%= type_and_message.last %>
   </div>
