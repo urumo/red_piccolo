@@ -13,12 +13,13 @@ module DomainServices
         @user = user
       end
 
+      # @return <User>
       def call
         user_setting = user.user_setting
         user_setting.first_name = first_name || user.user_setting.first_name
         user_setting.last_name = last_name || user.user_setting.last_name
         user_setting.date_of_birth = date_of_birth || user.user_setting.date_of_birth
-        user_setting.full_name = "#{user.user_setting.first_name} #{user.user_setting.last_name}"
+        user_setting.full_name = "#{user_setting.first_name} #{user_setting.last_name}"
         user_setting.save!
         user
       end

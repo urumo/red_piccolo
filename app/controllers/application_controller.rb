@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
       raise DomainErrors::User::AuthorizationError if current_user.nil?
     rescue DomainErrors::User::AuthorizationError
       session[:token] = nil
-      nil
     ensure
       redirect_to_login if @current_user.nil?
     end
