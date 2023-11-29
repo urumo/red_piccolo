@@ -42,8 +42,9 @@ module RedPiccolo
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.logger = Logger.new($stdout)
-                          .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-                          .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+    config.logger = Logger.new($stdout).tap do |logger|
+      logger.formatter = ::Logger::Formatter.new
+    end
+    config.logger = ActiveSupport::TaggedLogging.new(config.logger)
   end
 end
