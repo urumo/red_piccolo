@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   include Modules::HttpErrorHandler
-  before_action :current_user
   add_flash_types :success, :warning, :danger, :info
 
   def authorize_user
@@ -25,6 +24,7 @@ class ApplicationController < ActionController::Base
     nil
   end
 
+  # @deprecated
   def current_user_token
     token_header = request.headers['Authorization']
     return nil if token_header.nil?
