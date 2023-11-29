@@ -3,7 +3,7 @@
 module ApplicationServices
   class JwtService
     HMAC_SECRET = ENV.fetch('JWT_SECRET') do
-      raise ApplicationErrors::Jwt::JWTSecretKeyIsNotSetError if Rails.env.production?
+      raise ApplicationErrors::Jwt::JwtSecretKeyIsNotSetError if Rails.env.production?
 
       'topsecret'
     end

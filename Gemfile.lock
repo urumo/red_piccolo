@@ -224,6 +224,9 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.18.0)
       connection_pool
+    redis-session-store (0.11.5)
+      actionpack (>= 6, < 8)
+      redis (>= 3, < 6)
     regexp_parser (2.8.2)
     reline (0.4.0)
       io-console (~> 0.5)
@@ -325,6 +328,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.1.2)
   redis (>= 4.0.1)
+  redis-session-store (~> 0.11.5)
   rspec-rails (~> 6.0)
   rubocop (~> 1.57)
   sidekiq (~> 7.2)
