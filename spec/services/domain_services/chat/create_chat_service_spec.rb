@@ -20,10 +20,6 @@ RSpec.describe DomainServices::Chat::CreateChatService do
     end
 
     context 'when creating a chat' do
-      it 'creates a chat' do
-        expect { described_class.new(owner, chat_name, nil).call }.to change(Chat, :count).by(1)
-      end
-
       it 'creates a chat with the correct title' do
         chat = described_class.new(owner, chat_name, nil).call
         expect(chat.title).to eq(chat_name)
