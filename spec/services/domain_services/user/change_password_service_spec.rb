@@ -4,9 +4,11 @@ require 'rails_helper'
 
 RSpec.describe DomainServices::User::ChangePasswordService do
   let(:user) { FactoryBot.build(:user) }
-  setup do
+
+  before do
     user.save!
   end
+
   describe '#call' do
     context 'when old password is invalid' do
       it 'raises an error' do

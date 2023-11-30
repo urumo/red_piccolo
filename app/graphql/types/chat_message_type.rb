@@ -2,12 +2,13 @@
 
 module Types
   class ChatMessageType < Types::BaseObject
-    field :id, ID, null: false
-    field :chat_id, String, null: false
-    field :user_id, String, null: false
-    field :content, String
-    field :message_histories, [MessageHistoryType], null: false
-    field :created_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    description 'Chat message type'
+    field :chat_id, String, null: false, description: 'Chat ID'
+    field :content, String, description: 'Content'
+    field :created_at, GraphQL::Types::ISO8601DateTime, null: false, description: 'Created at'
+    field :id, ID, null: false, description: 'ID'
+    field :message_histories, [MessageHistoryType], null: false, description: 'Message histories'
+    field :updated_at, GraphQL::Types::ISO8601DateTime, null: false, description: 'Updated at'
+    field :user_id, String, null: false, description: 'User ID'
   end
 end

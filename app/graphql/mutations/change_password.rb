@@ -2,21 +2,19 @@
 
 module Mutations
   class ChangePassword < BaseMutation
-    field :success, GraphQL::Types::Boolean, null: false
+    description 'Change password'
+    field :success, GraphQL::Types::Boolean, null: false, description: 'Success'
 
-    argument :old_password, String, required: true
-    argument :new_password, String, required: true
-    argument :new_password_confirmation, String, required: true
+    argument :user_password, Types::UserPasswordInputType, required: true, description: 'User password'
 
-    # TODO: define resolve method
-    def resolve(old_password:, new_password:, new_password_confirmation:)
+    def resolve(user_password:)
       with_error_handling do
         with_authorization do
           success = DomainServices::User::ChangePasswordService.call(
             @current_user,
-            old_password,
-            new_password,
-            new_password_confirmation
+            user_password[:old_password],
+            user_password[:new_password],
+            user_password[:new_password_confirmation]
           )
           { success: }
         end

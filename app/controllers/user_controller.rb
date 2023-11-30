@@ -80,7 +80,7 @@ class UserController < ApplicationController
   end
 
   def change_password(params)
-    return unless params[:old_password].present?
+    return if params[:old_password].blank?
 
     DomainServices::User::ChangePasswordService.call(@current_user,
                                                      params[:old_password],

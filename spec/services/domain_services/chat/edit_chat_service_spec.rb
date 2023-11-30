@@ -22,8 +22,8 @@ RSpec.describe DomainServices::Chat::EditChatService do
         chat.chat_participants.create(user:, user_role: :admin)
         chat.reload # Reload once before the change matchers
         expect { described_class.call(user, chat, new_chat_title, new_chat_description) }
-          .to change { chat.title }.to(new_chat_title)
-                                   .and change { chat.description }.to(new_chat_description)
+          .to change(chat, :title).to(new_chat_title)
+                                  .and change(chat, :description).to(new_chat_description)
       end
     end
   end

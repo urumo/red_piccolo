@@ -2,6 +2,7 @@
 
 module Types
   class JwtType < Types::BaseObject
-    field :token, String
+    description 'JWT type'
+    field :token, String, description: 'Token'
   end
 end

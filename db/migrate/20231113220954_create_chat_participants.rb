@@ -12,5 +12,7 @@ class CreateChatParticipants < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :chat_participants, %i[chat_id user_id], unique: true
   end
 end
