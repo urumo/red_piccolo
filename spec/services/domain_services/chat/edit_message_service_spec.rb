@@ -7,7 +7,7 @@ RSpec.describe DomainServices::Chat::EditMessageService do
   let(:new_content) { 'new content' }
 
   describe '#call' do
-    it 'has more then 1 message' do
+    it 'has more than 1 message' do
       expect(chat.chat_messages.count).to be > 1
     end
 
