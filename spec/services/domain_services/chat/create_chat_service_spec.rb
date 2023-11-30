@@ -41,7 +41,7 @@ RSpec.describe DomainServices::Chat::CreateChatService do
         expect { create_chat }.to change(Chat, :count).by(1)
       end
 
-      it 'sets the correct title for the chat' do
+      it 'returns a chat with the correct title' do
         expect(create_chat.title).to eq(chat_name)
       end
 
