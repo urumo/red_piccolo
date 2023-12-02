@@ -10,6 +10,8 @@
   <%= stylesheet_link_tag "bulma", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+  <%= vite_client_tag %>
+  <%= vite_typescript_tag 'application' %>
 </head>
 
 <body>
@@ -30,12 +32,12 @@
 <!--    <div class="navbar-end">-->
 <!--      <div class="navbar-item">-->
 <!--        <div class="buttons">-->
-          <%# if session[:token].present? || cookies[:token].present? %>
-            <%#= link_to(@current_user.full_name, '/identity', class: 'button') %>
-            <%#= form_tag(logout_path, method: :delete) do %>
-              <%#= submit_tag "Log out", class: 'button is-danger' %>
-            <%# end %>
-          <%# else %>
+<%# if session[:token].present? || cookies[:token].present? %>
+<%#= link_to(@current_user.full_name, '/identity', class: 'button') %>
+<%#= form_tag(logout_path, method: :delete) do %>
+<%#= submit_tag "Log out", class: 'button is-danger' %>
+<%# end %>
+<%# else %>
 <!--            <a class="button is-primary" href="<%#= auth_url %>?form_action=register">-->
 <!--              <strong>Sign up</strong>-->
 <!--            </a>-->
@@ -43,7 +45,7 @@
 <!--              Log in-->
 <!--            </a>-->
 
-          <%# end %>
+<%# end %>
 <!--        </div>-->
 
 <!--      </div>-->
