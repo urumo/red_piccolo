@@ -1,0 +1,14 @@
+{
+  "all": {
+    "sourceCodeDir": "app/javascript",
+    "watchAdditionalPaths": [],
+    "autoBuild": true,
+    "publicOutputDir": ""
+  },
+  "development": {
+    "port": 3036
+  },
+  "test": {
+    "port": 3037
+  }
+}
