@@ -58,6 +58,8 @@ coverage
 
 /cypress/videos/
 /cypress/screenshots/
+/public/.vite
+/app/javascript/tmp
 
 # Editor directories and files
 .vscode/*

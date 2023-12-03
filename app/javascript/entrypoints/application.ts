@@ -29,10 +29,10 @@
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import 'bulma/css/bulma.css'
+// import 'bulma/css/bulma.css'
 
-import App from '../layouts/App.vue'
-import router from '../router'
+import App from '@/layouts/App.vue'
+import router from '@/router'
 
 const app = createApp(App)
 

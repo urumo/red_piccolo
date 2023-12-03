@@ -10,6 +10,7 @@
     "bulma": "^0.9.4",
     "pinia": "^2.1.7",
     "vite-plugin-full-reload": "^1.1.0",
+    "vite-plugin-stimulus-hmr": "^3.0.0",
     "vue": "^3.3.9",
     "vue-router": "^4.2.5",
     "webpack": "^5.89.0",
@@ -22,7 +23,7 @@
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "vue-tsc --noEmit && eslint 'app/javascript/**/*.{js,vue,ts,tsx,jsx}' --fix",
     "format": "prettier --write app/javascript"
   },
   "devDependencies": {
