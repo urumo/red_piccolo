@@ -2,13 +2,14 @@
 
 class ApplicationController < ActionController::Base
   include Modules::HttpErrorHandler
+  protect_from_forgery with: :exception
   add_flash_types :success, :warning, :danger, :info
 
   def authorize_user
     with_http_error_handling do
       raise DomainErrors::User::AuthorizationError if current_user.nil?
     rescue DomainErrors::User::AuthorizationError
-      session[:token] = nil
+      reset_session
     ensure
       redirect_to_login if @current_user.nil?
     end
@@ -16,10 +17,17 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def current_user
-    token = request.headers['Authorization'] || session[:token]
+  def session_token
+    session_store = Rails.application.config.session_store.new(
+      Rails.application,
+      Rails.application.config.session_options
+    )
+    id = request.headers['X-Auth-ID']
+    session_store.send(:find_session, request.env, id).last[:token] || session[:token]
+  end
 
-    @current_user = DomainServices::User::AuthorizationService.call(token)
+  def current_user
+    @current_user = DomainServices::User::AuthorizationService.call(session_token)
   rescue StandardError
     nil
   end

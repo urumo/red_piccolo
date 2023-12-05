@@ -1,0 +1,20 @@
+query GetCurrentUser {
+  me {
+    email
+    id
+    userSetting {
+      firstName
+      lastName
+      dateOfBirth
+    }
+    firstName
+    lastName
+    fullName
+    blockedUsers {
+      id
+      userSetting {
+        firstName
+      }
+    }
+  }
+}

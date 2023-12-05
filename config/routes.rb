@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get '/', to: 'user#index'
     get '/auth', to: 'user#auth'
     post '/login', to: 'user#login'
-    delete '/logout', to: 'user#logout'
+    get '/logout', to: 'user#logout'
     post '/register', to: 'user#register'
     patch '/block', to: 'user#block'
     patch '/settings', to: 'user#settings'
