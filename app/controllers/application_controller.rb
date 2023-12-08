@@ -18,12 +18,14 @@ class ApplicationController < ActionController::Base
   protected
 
   def session_token
+    return session[:token] if session && session[:token]
+
     session_store = Rails.application.config.session_store.new(
       Rails.application,
       Rails.application.config.session_options
     )
     id = request.headers['X-Auth-ID']
-    session_store.send(:find_session, request.env, id).last[:token] || session[:token]
+    session_store.send(:find_session, request.env, id).last[:token]
   end
 
   def current_user

@@ -8,15 +8,10 @@ module Modules
       def me
         with_error_handling do
           with_authorization do
-            sleep 2
             @current_user
           end
         end
       end
-
-      # def self.current_user(context)
-      #   DomainServices::User::AuthorizationService.call(context[:token])
-      # end
     end
   end
 end

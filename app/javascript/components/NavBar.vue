@@ -4,25 +4,6 @@ import { useAuthorizationStore } from '@/stores/useAuthorization'
 
 const authStore = useAuthorizationStore()
 authStore.authorize()
-
-// const getCurrentUser = async () => {
-//   try {
-//     const { data, fetching, error } = currentUserQuery.executeQuery();
-//     userFetching.value = fetching.value
-//     watch(fetching, (fetching) => {
-//       userFetching.value = fetching
-//       user.value = data?.value?.me
-//       userError.value = error?.value
-//     })
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     userFetching.value = false
-//   }
-// }
-function logout() {
-  authStore.logout()
-}
 </script>
 
 <template>
@@ -31,7 +12,8 @@ function logout() {
     <RouterLink to="/about">About</RouterLink>
     <!--    <v-spacer></v-spacer>-->
     <div v-if="authStore.tokenId">
-      <a href="/identity/logout" @click="logout" data-method="delete">Log Out</a>
+      <a href="/identity/logout" @click="authStore.logout" data-method="delete">Log Out</a>
+      <a href="/identity">{{ authStore.user.fullName }}</a>
     </div>
     <div v-else>
       <a href="/identity/auth">Log In</a>
