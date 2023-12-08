@@ -33,7 +33,11 @@ module ApplicationServices
         Source: #{error.backtrace&.first}
       HEREDOC
 
-      ApplicationServices::ErrorReportService.send_to_telegram(message)
+      begin
+        ApplicationServices::ErrorReportService.send_to_telegram(message)
+      rescue => e
+        Rails.logger.error "Failed to send error report: #{e.message}"
+      end
     end
   end
 end
