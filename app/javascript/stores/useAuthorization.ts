@@ -7,7 +7,7 @@ import type { UseQueryResponse, UseMutationResponse } from '@urql/vue'
 import { GetCurrentUserDocument, useLoginMutation, useRegisterMutation } from '@/types/graphql'
 import { watch } from 'vue'
 import type { VueCookies } from 'vue-cookies'
-import ErrorHandler from "@/errorHandler";
+import ErrorHandler from '@/errorHandler'
 
 export const useAuthorizationStore = defineStore('auth', () => {
   const cookies: VueCookies = inject('$cookies') as VueCookies
