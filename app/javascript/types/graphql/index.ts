@@ -81,6 +81,8 @@ export type ChatMessage = {
   messageHistories: Array<MessageHistory>
   /** Updated at */
   updatedAt: Scalars['ISO8601DateTime']['output']
+  /** User */
+  user: User
   /** User ID */
   userId: Scalars['String']['output']
 }
@@ -308,6 +310,20 @@ export type GetCurrentUserQuery = {
       lastName?: string | null
       dateOfBirth?: any | null
     }
+    chats: Array<{
+      __typename?: 'Chat'
+      id: string
+      title: string
+      description?: string | null
+      users: Array<{ __typename?: 'User'; id: string; fullName?: string | null }>
+      chatMessages: Array<{
+        __typename?: 'ChatMessage'
+        id: string
+        content?: string | null
+        createdAt: any
+        user: { __typename?: 'User'; id: string; fullName?: string | null }
+      }>
+    }>
     blockedUsers: Array<{
       __typename?: 'User'
       id: string
@@ -410,6 +426,24 @@ export const GetCurrentUserDocument = gql`
         firstName
         lastName
         dateOfBirth
+      }
+      chats {
+        id
+        title
+        description
+        users {
+          id
+          fullName
+        }
+        chatMessages {
+          id
+          content
+          createdAt
+          user {
+            id
+            fullName
+          }
+        }
       }
       firstName
       lastName

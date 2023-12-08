@@ -1,18 +1,35 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { useAuthorizationStore } from '@/stores/useAuthorization'
+import ErrorHandler from '@/errorHandler'
+import fetchWrapper from '@/fetchWrapper'
 
 const authStore = useAuthorizationStore()
 authStore.authorize()
+const logout = async (e: Event) => {
+  e.preventDefault()
+  try {
+    await fetchWrapper('/identity/logout', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    })
+    authStore.logout()
+    // window.location.href = '/'
+  } catch (e) {
+    ErrorHandler(e, 'logout', 'NavBar.vue')
+  }
+}
 </script>
 
 <template>
   <nav>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/about">About</RouterLink>
-    <!--    <v-spacer></v-spacer>-->
     <div v-if="authStore.tokenId">
-      <a href="/identity/logout" @click="authStore.logout" data-method="delete">Log Out</a>
+      <a @click="logout">Log Out</a>
       <a href="/identity">{{ authStore.user.fullName }}</a>
     </div>
     <div v-else>

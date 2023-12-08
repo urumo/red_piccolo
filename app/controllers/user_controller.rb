@@ -15,7 +15,10 @@ class UserController < ApplicationController
   def logout
     with_http_error_handling do
       reset_session
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: { status: :ok }, status: :ok }
+      end
     end
   end
 

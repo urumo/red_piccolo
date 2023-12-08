@@ -23,15 +23,18 @@ const retryOptions = {
 
 const app = createApp({
   setup() {
-    const tokenId = localStorage.getItem('session') || window.location.search.split('=')[1]
+    const tokenId = window.location.search.split('=')[1]
     if (tokenId) {
       const authStore = useAuthorizationStore()
       authStore.setToken(tokenId)
-      window.location = '/'
+      // window.location = '/'
     }
   },
   render: () => h(App)
 })
+
+const getCsrfToken = (): string =>
+  document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string
 
 app.config.errorHandler = ErrorHandler
 
@@ -40,14 +43,16 @@ app.use(router)
 app.use(VueCookies, { secure: true, expires: '1D' })
 app.use(vuetify)
 app.use(urlq, {
-  url: 'http://localhost:3000/graphql',
+  url: '/graphql',
   exchanges: [cacheExchange, fetchExchange, retryExchange(retryOptions)],
   fetchOptions: () => {
     return {
       headers: {
-        'X-Auth-ID': app.$cookies.get('session') || ''
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
       }
     }
-  }
+  },
+  requestPolicy: 'cache-and-network'
 })
 app.mount('#app')

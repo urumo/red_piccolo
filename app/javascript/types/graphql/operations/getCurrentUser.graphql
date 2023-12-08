@@ -7,6 +7,24 @@ query GetCurrentUser {
       lastName
       dateOfBirth
     }
+    chats {
+      id
+      title
+      description
+      users {
+        id
+        fullName
+      }
+      chatMessages {
+        id
+        content
+        createdAt
+        user {
+          id
+          fullName
+        }
+      }
+    }
     firstName
     lastName
     fullName

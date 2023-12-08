@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [
     RubyPlugin(),
     StimulusHMR(),
-    FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }), //, 'app/javascript/**/*'
+    FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 200 }),
     vue(),
     vueJsx(),
     vuetify({autoImport: true}),

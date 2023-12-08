@@ -13,12 +13,14 @@
  *= require_tree .
  *= require_self
  */
-.project-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    color: #fff;
-    letter-spacing: 2px;
-    /*font-family: 'Pacifico', cursive; !* Example: Use a custom font for the project name *!*/
-    /*font-size: 1.5rem;*/
-    /*color: #fff; !* Text color *!*/
-}
+
+
+/*body {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    margin: 0;*/
+/*    background: #f0f0f0;*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/

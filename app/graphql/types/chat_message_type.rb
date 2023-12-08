@@ -9,6 +9,7 @@ module Types
     field :id, ID, null: false, description: 'ID'
     field :message_histories, [MessageHistoryType], null: false, description: 'Message histories'
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false, description: 'Updated at'
+    field :user, UserType, null: false, description: 'User'
     field :user_id, String, null: false, description: 'User ID'
   end
 end

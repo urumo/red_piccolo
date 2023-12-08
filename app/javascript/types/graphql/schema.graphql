@@ -113,6 +113,11 @@ type ChatMessage {
   updatedAt: ISO8601DateTime!
 
   """
+  User
+  """
+  user: User!
+
+  """
   User ID
   """
   userId: String!

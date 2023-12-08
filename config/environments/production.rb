@@ -3,6 +3,10 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+  config.logger = Logger.new($stdout).tap do |logger|
+    logger.formatter = ::Logger::Formatter.new
+  end
+  config.logger = ActiveSupport::TaggedLogging.new(config.logger)
   # Settings specified here will take precedence over those in config/application.rb.\
 
   # Code is not reloaded between requests.
