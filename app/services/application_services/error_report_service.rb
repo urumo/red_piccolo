@@ -16,7 +16,10 @@ module ApplicationServices
       req = Net::HTTP::Post.new(uri)
       req.set_form_data(chat_id: TG_CHAT_ID, text: message)
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        http.request(req)
+        response = http.request(req)
+        unless response.is_a?(Net::HTTPSuccess)
+          Rails.logger.error "Error sending message to Telegram: #{response.body}"
+        end
       end
     end
 
