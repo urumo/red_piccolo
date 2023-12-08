@@ -2,8 +2,10 @@
 
 module Modules
   module GqlErrorHandler
-    def with_error_handling
-      yield
+    include WithTransaction
+
+    def with_error_handling(&block)
+      Rails.error.record { with_transaction(&block) }
     rescue StandardError => e
       Rails.logger.error("GraphQL Error: #{e.message}")
       GraphQL::ExecutionError.new(e.message)

@@ -1,0 +1,17 @@
+overwrite: true
+schema: "app/javascript/types/graphql/schema.graphql"
+documents: "app/javascript/types/graphql/operations/**/*.graphql"
+generates:
+  app/javascript/types/graphql/index.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-vue-apollo'
+
+  app/javascript/types/graphql/modules.d.ts:
+    plugins:
+      - 'typescript-graphql-files-modules'
+
+  app/javascript/types/graphql/fragment-matcher.json:
+    plugins:
+      - "fragment-matcher"

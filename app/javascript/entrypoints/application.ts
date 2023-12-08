@@ -1,42 +1,58 @@
-// // To see this message, add the following to the `<head>` section in your
-// // views/layouts/application.html.erb
-// //
-// //    <%= vite_client_tag %>
-// //    <%= vite_javascript_tag 'application' %>
-// console.log('Vite ⚡️ Rails')
-//
-// // If using a TypeScript entrypoint file:
-// //     <%= vite_typescript_tag 'application' %>
-// //
-// // If you want to use .jsx or .tsx, add the extension:
-// //     <%= vite_javascript_tag 'application.jsx' %>
-//
-// console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
-//
-// // Example: Load Rails libraries in Vite.
-// //
-// // import * as Turbo from '@hotwired/turbo'
-// // Turbo.start()
-// //
-// // import ActiveStorage from '@rails/activestorage'
-// // ActiveStorage.start()
-// //
-// // // Import all channels.
-// // const channels = import.meta.globEager('./**/*_channel.js')
-//
-// // Example: Import a stylesheet in app/frontend/index.css
-// // import '~/index.css'
+import { createApp, h } from 'vue';
+import { createPinia } from 'pinia';
+import 'bulma/css/bulma.css';
+import App from '@/layouts/App.vue';
+import router from '@/router';
+import '@mdi/font/css/materialdesignicons.css';
+import 'vuetify/styles';
+import { createVuetify } from 'vuetify';
+import urlq, { cacheExchange, fetchExchange } from '@urql/vue';
+import VueCookies from 'vue-cookies';
+import { useAuthorizationStore } from '@/stores/useAuthorization';
+import { retryExchange } from '@urql/exchange-retry';
+import ErrorHandler from '@/errorHandler';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-// import 'bulma/css/bulma.css'
+const vuetify = createVuetify({});
+const retryOptions = {
+  initialDelayMs: 1000,
+  maxDelayMs: 15000,
+  randomDelay: true,
+  maxNumberAttempts: 2,
+  retryIf: (err) => err && err.networkError
+};
 
-import App from '@/layouts/App.vue'
-import router from '@/router'
+const app = createApp({
+  setup() {
+    const tokenId = window.location.search.split('=')[1];
+    if (tokenId) {
+      const authStore = useAuthorizationStore();
+      authStore.setToken(tokenId);
+      // window.location = '/'
+    }
+  },
+  render: () => h(App)
+});
 
-const app = createApp(App)
+const getCsrfToken = (): string =>
+  document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string;
 
-app.use(createPinia())
-app.use(router)
+app.config.errorHandler = ErrorHandler;
 
-app.mount('#app')
+app.use(createPinia());
+app.use(router);
+app.use(VueCookies, { secure: true, expires: '1D' });
+app.use(vuetify);
+app.use(urlq, {
+  url: '/graphql',
+  exchanges: [cacheExchange, fetchExchange, retryExchange(retryOptions)],
+  fetchOptions: () => {
+    return {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
+      }
+    };
+  },
+  requestPolicy: 'cache-and-network'
+});
+app.mount('#app');

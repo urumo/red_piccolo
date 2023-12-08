@@ -1,0 +1,38 @@
+query GetCurrentUser {
+  me {
+    email
+    id
+    userSetting {
+      firstName
+      lastName
+      dateOfBirth
+    }
+    chats {
+      id
+      title
+      description
+      users {
+        id
+        fullName
+      }
+      chatMessages {
+        id
+        content
+        createdAt
+        user {
+          id
+          fullName
+        }
+      }
+    }
+    firstName
+    lastName
+    fullName
+    blockedUsers {
+      id
+      userSetting {
+        firstName
+      }
+    }
+  }
+}

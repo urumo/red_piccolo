@@ -1,0 +1,15 @@
+mutation Register($email: String!, $password: String!, $passwordConfirmation: String!) {
+  register(
+    input: {
+      userDetails: {
+        email: $email
+        password: $password
+        passwordConfirmation: $passwordConfirmation
+      }
+    }
+  ) {
+    jwt {
+      token
+    }
+  }
+}

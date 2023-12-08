@@ -14,9 +14,11 @@ class UserController < ApplicationController
 
   def logout
     with_http_error_handling do
-      session[:token] = nil
-      cookies.delete(:token)
-      redirect_to root_path
+      reset_session
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: { status: :ok }, status: :ok }
+      end
     end
   end
 
@@ -50,7 +52,7 @@ class UserController < ApplicationController
 
   def auth
     with_http_error_handling do
-      redirect_to root_path if @current_user
+      redirect_to_root
     end
   end
 
@@ -72,7 +74,7 @@ class UserController < ApplicationController
   end
 
   def redirect_to_root
-    redirect_to root_path if session[:user_id].present?
+    redirect_to(root_path(id: session.id)) if session[:token].present?
   end
 
   def set_editable
@@ -93,7 +95,7 @@ class UserController < ApplicationController
     respond_to do |format|
       format.html do
         session[:token] = token
-        redirect_to root_path
+        redirect_to_root
       end
       format.json { render json: { token: }, status: :ok }
     end

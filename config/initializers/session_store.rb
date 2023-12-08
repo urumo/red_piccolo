@@ -10,6 +10,7 @@ begin
                                          on_redis_down: ->(e, env, sid) { raise e, "#{env} #{sid}" },
                                          on_session_load_error: ->(e, sid) { raise e, sid },
                                          serializer: :json,
+                                         cookie_only: true,
                                          secure: Rails.env.production?,
                                          redis: {
                                            expire_after: 1.day,

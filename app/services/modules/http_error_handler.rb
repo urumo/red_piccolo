@@ -4,7 +4,7 @@ module Modules
   module HttpErrorHandler
     include Modules::WithTransaction
     def with_http_error_handling(&block)
-      with_transaction(&block)
+      Rails.error.record { with_transaction(&block) }
     rescue StandardError => e
       Rails.logger.error("HTTP Error: #{e.message}")
       error = if Rails.env.production?

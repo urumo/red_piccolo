@@ -20,6 +20,7 @@ require 'rails/generators'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load unless Rails.env.production?
 
 module RedPiccolo
   class Application < Rails::Application
@@ -41,10 +42,5 @@ module RedPiccolo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    config.logger = Logger.new($stdout).tap do |logger|
-      logger.formatter = ::Logger::Formatter.new
-    end
-    config.logger = ActiveSupport::TaggedLogging.new(config.logger)
   end
 end

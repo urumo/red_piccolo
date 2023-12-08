@@ -4,9 +4,9 @@ module Modules
   module User
     module Graphql
       include Modules::GqlErrorHandler
-      def me
-        with_error_handling { Graphql.current_user(context) }
-      end
+      include Modules::User::AuthHandler
+
+      def me = with_error_handling { with_authorization { @current_user } }
     end
   end
 end

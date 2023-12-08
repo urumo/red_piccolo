@@ -6,12 +6,14 @@ class GraphqlController < ApplicationController
   # but you'll have to authenticate your user separately
   # protect_from_forgery with: :null_session
 
+  skip_before_action :verify_authenticity_token
+  # skip_around_action :wrap_in_error_handler
   def execute
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      token: current_user_token
+      token: session_token
     }
     result = RedPiccoloSchema.execute(query, variables:, context:, operation_name:)
     render json: result
