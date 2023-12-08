@@ -12,5 +12,5 @@
 }
 </style>
 <script setup lang="ts">
-import ChatSystem from '@/components/ChatSystem.vue'
+import ChatSystem from '@/components/ChatSystem.vue';
 </script>

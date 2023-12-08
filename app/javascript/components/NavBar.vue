@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { useAuthorizationStore } from '@/stores/useAuthorization'
-import ErrorHandler from '@/errorHandler'
-import fetchWrapper from '@/fetchWrapper'
+import { RouterLink } from 'vue-router';
+import { useAuthorizationStore } from '@/stores/useAuthorization';
+import ErrorHandler from '@/errorHandler';
+import fetchWrapper from '@/fetchWrapper';
 
-const authStore = useAuthorizationStore()
-authStore.authorize()
+const authStore = useAuthorizationStore();
+authStore.authorize();
 const logout = async (e: Event) => {
-  e.preventDefault()
+  e.preventDefault();
   try {
     await fetchWrapper('/identity/logout', {
       method: 'DELETE',
@@ -15,13 +15,13 @@ const logout = async (e: Event) => {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       }
-    })
-    authStore.logout()
+    });
+    authStore.logout();
     // window.location.href = '/'
   } catch (e) {
-    ErrorHandler(e, 'logout', 'NavBar.vue')
+    ErrorHandler(e, 'logout', 'NavBar.vue');
   }
-}
+};
 </script>
 
 <template>

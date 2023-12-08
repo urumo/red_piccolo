@@ -5,10 +5,15 @@ module ApplicationServices
     TG_URL = 'https://api.telegram.org/bot'
     TG_METHOD = 'sendMessage'
     TG_KEY = ENV.fetch('VITE_TG_KEY') do
-      raise 'VITE_TG_KEY is not set. Please set the VITE_TG_KEY environment variable for Telegram error reporting.' if Rails.env.production?
+      if Rails.env.production?
+        raise 'VITE_TG_KEY is not set. Please set the VITE_TG_KEY environment variable for Telegram error reporting.'
+      end
     end
     TG_CHAT_ID = ENV.fetch('VITE_TG_CHAT_ID') do
-      raise 'VITE_TG_CHAT_ID is not set. Please set the VITE_TG_CHAT_ID environment variable for Telegram error reporting.' if Rails.env.production?
+      if Rails.env.production?
+        raise 'VITE_TG_CHAT_ID is not set. Please set the VITE_TG_CHAT_ID environment' \
+                ' variable for Telegram error reporting.'
+      end
     end
 
     def self.send_to_telegram(message)
@@ -17,9 +22,7 @@ module ApplicationServices
       req.set_form_data(chat_id: TG_CHAT_ID, text: message)
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
         response = http.request(req)
-        unless response.is_a?(Net::HTTPSuccess)
-          Rails.logger.error "Error sending message to Telegram: #{response.body}"
-        end
+        Rails.logger.error "Error sending message to Telegram: #{response.body}" unless response.is_a?(Net::HTTPSuccess)
       end
     end
 
@@ -35,7 +38,7 @@ module ApplicationServices
 
       begin
         ApplicationServices::ErrorReportService.send_to_telegram(message)
-      rescue => e
+      rescue StandardError => e
         Rails.logger.error "Failed to send error report: #{e.message}"
       end
     end

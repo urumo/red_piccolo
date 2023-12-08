@@ -1,9 +1,9 @@
 <script async setup lang="ts">
-import { useCounterStore } from '@/stores/counter'
-import { useAuthorizationStore } from '@/stores/useAuthorization'
+import { useCounterStore } from '@/stores/counter';
+import { useAuthorizationStore } from '@/stores/useAuthorization';
 
-const counter = useCounterStore()
-const auth = useAuthorizationStore()
+const counter = useCounterStore();
+const auth = useAuthorizationStore();
 </script>
 
 <template>

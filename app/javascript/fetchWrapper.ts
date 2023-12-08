@@ -1,4 +1,4 @@
-import ErrorHandler from '@/errorHandler'
+import ErrorHandler from '@/errorHandler';
 
 async function fetchWrapper(
   url: string,
@@ -10,34 +10,34 @@ async function fetchWrapper(
     method: 'GET'
   }
 ) {
-  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
   const headers = {
     ...options.headers,
     'X-CSRF-Token': csrfToken
-  }
+  };
 
   const fetchOptions = {
     ...options,
     headers
-  }
+  };
 
   try {
-    const response = await fetch(url, fetchOptions as RequestInit)
+    const response = await fetch(url, fetchOptions as RequestInit);
 
-    const newCsrfToken = response.headers.get('X-CSRF-Token')
+    const newCsrfToken = response.headers.get('X-CSRF-Token');
     if (newCsrfToken) {
-      document.querySelector('meta[name="csrf-token"]')?.setAttribute('content', newCsrfToken)
+      document.querySelector('meta[name="csrf-token"]')?.setAttribute('content', newCsrfToken);
     }
 
     if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.message || 'Server error')
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Server error');
     }
 
-    return response
+    return response;
   } catch (error) {
-    ErrorHandler(error)
+    ErrorHandler(error);
   }
 }
 
-export default fetchWrapper
+export default fetchWrapper;

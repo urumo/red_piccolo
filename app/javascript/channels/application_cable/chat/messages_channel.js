@@ -1,4 +1,4 @@
-import consumer from './consumer'
+import consumer from './consumer';
 
 consumer.subscriptions.create('ApplicationCable::Chat::MessagesChannel', {
   // connected() {
@@ -12,4 +12,4 @@ consumer.subscriptions.create('ApplicationCable::Chat::MessagesChannel', {
   // received(data) {
   //   // Called when there's incoming data on the websocket for this channel
   // }
-})
+});
