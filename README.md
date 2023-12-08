@@ -2,10 +2,15 @@
 
 ## About The Project
 
-Red Piccolo is an upcoming instant messaging application that offers more than just a platform to communicate. It is
-designed to allow users to not only share their moments but also handle finances securely and swiftly with one another.
-With a strong emphasis on security and speed, Red Piccolo aims to redefine the way we think about connectivity in our
-daily lives.
+Red Piccolo is an ambitious instant messaging application that goes beyond conventional communication. It's designed to be a multi-faceted platform, allowing users not only to share life's moments but also to manage finances with ease and security. Red Piccolo will stand out with its commitment to speed and high security, setting a new standard for instant messaging applications.
+
+The development of Red Piccolo is planned in multiple phases:
+
+1. **Relay of Telegram**: Initially, Red Piccolo will act as a relay for Telegram, allowing users to connect and communicate using their existing Telegram accounts.
+2. **Finances (Potential Crypto Integration)**: A key phase will introduce financial functionalities, potentially including cryptocurrency transactions, to provide users with a seamless financial exchange experience.
+3. **Artificial Intelligence**: AI will play a role in enhancing user interactions, offering intelligent features that adapt to user needs.
+4. **Standalone Product**: The final goal is to establish Red Piccolo as a standalone product, independent and full-featured, to serve as a primary platform for users' communication and financial needs.
+
 
 ## Prerequisites
 
