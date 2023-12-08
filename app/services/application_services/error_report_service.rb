@@ -5,10 +5,10 @@ module ApplicationServices
     TG_URL = 'https://api.telegram.org/bot'
     TG_METHOD = 'sendMessage'
     TG_KEY = ENV.fetch('VITE_TG_KEY') do
-      raise 'VITE_TG_KEY is not set' if Rails.env.production?
+      raise 'VITE_TG_KEY is not set. Please set the VITE_TG_KEY environment variable for Telegram error reporting.' if Rails.env.production?
     end
     TG_CHAT_ID = ENV.fetch('VITE_TG_CHAT_ID') do
-      raise 'VITE_TG_CHAT_ID is not set' if Rails.env.production?
+      raise 'VITE_TG_CHAT_ID is not set. Please set the VITE_TG_CHAT_ID environment variable for Telegram error reporting.' if Rails.env.production?
     end
 
     def self.send_to_telegram(message)
