@@ -10,9 +10,9 @@ class ErrorReporter
   def call(env)
     result = app.call(env)
   rescue StandardError => e
-    Rails.logger.debug '=' * 50
-    Rails.logger.debug e
-    Rails.logger.debug '=' * 50
+    Rails.logger.error '=' * 50
+    Rails.logger.error e
+    Rails.logger.error '=' * 50
     raise e
   ensure
     result

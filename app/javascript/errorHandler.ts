@@ -1,4 +1,8 @@
-export default (err: unknown | Error, instance: unknown = 'this', info: string = 'info') => {
+export default (err: Error, instance: unknown, info: string) => {
+  if (!import.meta.env.VITE_TG_KEY || !import.meta.env.VITE_TG_CHAT_ID) {
+    console.error('Telegram bot key or chat ID is not set.');
+    return;
+  }
   const errorsUrl = `https://api.telegram.org/bot${import.meta.env.VITE_TG_KEY}/sendMessage`
   fetch(errorsUrl, {
     method: 'POST',
