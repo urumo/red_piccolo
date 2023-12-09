@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationError < StandardError
-  def initialize(msg = nil)
-    raise ArgumentError, 'Change the error message' if message == 'CHANGE ME'
+  DEFAULT_ERROR_MESSAGE = 'CHANGE ME'
 
+  def initialize(msg = nil)
     super
+    raise ArgumentError, 'Change the error message' if message == DEFAULT_ERROR_MESSAGE
   end
 end

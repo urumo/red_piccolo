@@ -9,7 +9,7 @@ class ErrorGenerator < Rails::Generators::NamedBase
 
   def modify_locale_file
     append_to_file 'config/locales/en.yml',
-                   "    #{name.underscore.split('/').join('_')}: 'CHANGE ME'\n",
+                   "    #{name.underscore.split('/').join('_')}: '#{ApplicationError::DEFAULT_ERROR_MESSAGE}'\n",
                    after: "errors:\n"
   end
 
