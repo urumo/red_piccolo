@@ -1,3 +1,5 @@
 module DomainErrors
-class <%= name %>Error < StandardError; end
+class <%= name %>Error < StandardError
+  def message = I18n.t('errors.<%= name.underscore.split('/').join('_') %>')
+end
 end

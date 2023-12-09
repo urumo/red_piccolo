@@ -2,6 +2,8 @@
 
 module DomainErrors
   module User
-    class PasswordConfirmationDidNotMatchError < StandardError; end
+    class PasswordConfirmationDidNotMatchError < StandardError
+      def message = I18n.t('errors.password_confirmation_did_not_match')
+    end
   end
 end

@@ -2,6 +2,8 @@
 
 module DomainErrors
   module User
-    class EmailAlreadyTakenError < StandardError; end
+    class EmailAlreadyTakenError < StandardError
+      def message = I18n.t('errors.email_already_taken')
+    end
   end
 end

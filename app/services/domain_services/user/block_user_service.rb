@@ -14,7 +14,7 @@ module DomainServices
       end
 
       def call
-        raise ::DomainErrors::User::SelfBlockError, I18n.t('user.self_block') if current_user == other_user
+        raise ::DomainErrors::User::SelfBlockError if current_user == other_user
 
         BlockedUser.create!(user: current_user, other_user:)
       end

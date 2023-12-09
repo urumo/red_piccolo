@@ -15,7 +15,7 @@ module DomainServices
         payload = ApplicationServices::JwtService.decode(token)
         ::User.find(payload['user_id'])
       rescue JWT::DecodeError, ActiveRecord::RecordNotFound
-        raise DomainErrors::User::AuthorizationError, 'Invalid or expired token'
+        raise DomainErrors::User::AuthorizationError
       end
     end
   end
