@@ -33,10 +33,28 @@ en:
     invalid_password: "Invalid password"
     not_a_valid_email: "Not a valid email"
     email_already_taken: "is already taken"
-    self_block: "You can't block yourself"
     password:
       too_short: "is too short (minimum is %{count} characters)"
       number_missing: 'must contain at least one number'
       uppercase_missing: 'must contain at least one uppercase letter'
       lowercase_missing: 'must contain at least one lowercase letter'
       special_character_missing: 'must contain at least one special character'
+  errors:
+    jwt_secret_key_is_not_set: "JWT_SECRET_KEY environment variable is not set"
+    self_block: "You can't block yourself"
+    password_confirmation_did_not_match: "Password does not match the confirmation"
+    user_not_found: "User not found"
+    new_password_doesnt_match: "New password does not match the confirmation"
+    invalid_token: "Invalid token"
+    invalid_password: "Invalid password"
+    empty_password: "Password can't be blank"
+    email_already_taken: "Email is already taken"
+    authorization: "Invalid or expired token"
+    chat_owner: "You are not the chat owner"
+    delete_message_owner: "You are not the message owner"
+    edit_message_owner: "You are not the message owner"
+    no_owner: "Chat does not have an owner"
+    user_not_in_chat: "User is not in the chat"
+    user_already_in_chat: "User is already in the chat"
+    not_an_admin: "You are not an admin"
+    no_title: "Chat does not have a title"

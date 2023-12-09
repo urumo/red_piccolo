@@ -2,6 +2,8 @@
 
 module DomainErrors
   module User
-    class InvalidPasswordError < StandardError; end
+    class InvalidPasswordError < StandardError
+      def message = I18n.t('errors.invalid_password')
+    end
   end
 end

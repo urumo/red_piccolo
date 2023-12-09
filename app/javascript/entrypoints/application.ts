@@ -27,7 +27,7 @@ const app = createApp({
     if (tokenId) {
       const authStore = useAuthorizationStore();
       authStore.setToken(tokenId);
-      // window.location = '/'
+      window.location = '/';
     }
   },
   render: () => h(App)

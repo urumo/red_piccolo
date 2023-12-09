@@ -2,6 +2,8 @@
 
 module DomainErrors
   module User
-    class InvalidTokenError < StandardError; end
+    class InvalidTokenError < StandardError
+      def message = I18n.t('errors.invalid_token')
+    end
   end
 end
