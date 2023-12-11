@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+.gem_rbs_collection
 /.bundle
 .idea
 # Ignore all environment files (except templates).

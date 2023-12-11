@@ -1,0 +1,4 @@
+module Types
+  class UserRoleType < Types::BaseEnum
+  end
+end

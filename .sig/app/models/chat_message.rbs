@@ -1,0 +1,5 @@
+class ChatMessage < ApplicationRecord
+  def history: () -> untyped
+
+  def edited?: () -> untyped
+end

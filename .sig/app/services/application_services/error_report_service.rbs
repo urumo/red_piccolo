@@ -1,0 +1,15 @@
+module ApplicationServices
+  class ErrorReportService
+    TG_URL: "https://api.telegram.org/bot"
+
+    TG_METHOD: "sendMessage"
+
+    TG_KEY: untyped
+
+    TG_CHAT_ID: untyped
+
+    def self.send_to_telegram: (untyped message) -> untyped
+
+    def self.report_error: (untyped error, context: untyped, handled: untyped, level: untyped, src: untyped) -> untyped
+  end
+end

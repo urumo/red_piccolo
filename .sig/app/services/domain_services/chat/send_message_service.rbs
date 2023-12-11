@@ -1,0 +1,21 @@
+module DomainServices
+  module Chat
+    class SendMessageService < ApplicationService
+      @current_user: untyped
+
+      @chat: untyped
+
+      @message: untyped
+
+      attr_reader current_user: untyped
+
+      attr_reader chat: untyped
+
+      attr_reader message: untyped
+
+      def initialize: (untyped current_user, untyped chat, untyped message) -> void
+
+      def call: () -> untyped
+    end
+  end
+end

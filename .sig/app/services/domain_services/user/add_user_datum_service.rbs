@@ -1,0 +1,26 @@
+module DomainServices
+  module User
+    class AddUserDatumService < ApplicationService
+      @first_name: untyped
+
+      @last_name: untyped
+
+      @date_of_birth: untyped
+
+      @user: untyped
+
+      attr_reader first_name: untyped
+
+      attr_reader last_name: untyped
+
+      attr_reader date_of_birth: untyped
+
+      attr_reader user: untyped
+
+      def initialize: (untyped user, untyped first_name, untyped last_name, untyped date_of_birth) -> void
+
+      # @return <User>
+      def call: () -> untyped
+    end
+  end
+end

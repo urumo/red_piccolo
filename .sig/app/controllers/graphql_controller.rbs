@@ -1,0 +1,10 @@
+class GraphqlController < ApplicationController
+  # skip_around_action :wrap_in_error_handler
+  def execute: () -> untyped
+
+  private
+
+  def prepare_variables: (untyped variables_param) -> untyped
+
+  def handle_error_in_development: (untyped error) -> untyped
+end

@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class ChatOwnerError < StandardError
+    class ChatOwnerError < ApplicationError
       def message = I18n.t('errors.chat_owner')
     end
   end

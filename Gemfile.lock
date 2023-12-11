@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    abbrev (0.1.1)
     actioncable (7.1.2)
       actionpack (= 7.1.2)
       activesupport (= 7.1.2)
@@ -227,6 +228,8 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.1.0)
+    rbs (3.3.2)
+      abbrev
     rdoc (6.6.0)
       psych (>= 4.0.0)
     redis (5.0.8)
@@ -311,6 +314,8 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
+    typeprof (0.21.8)
+      rbs (>= 1.8.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
@@ -373,6 +378,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
+  typeprof (~> 0.21.8)
   tzinfo-data
   vite_rails (~> 3.0)
   web-console

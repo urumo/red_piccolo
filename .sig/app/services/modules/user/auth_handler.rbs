@@ -1,0 +1,9 @@
+module Modules
+  module User
+    module AuthHandler
+      @current_user: untyped
+
+      def with_authorization: () { () -> untyped } -> untyped
+    end
+  end
+end

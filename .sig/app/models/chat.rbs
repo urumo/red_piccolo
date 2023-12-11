@@ -1,0 +1,7 @@
+class Chat < ApplicationRecord
+  def owner: () -> untyped
+
+  def admins: () -> untyped
+
+  def admin_or_owner?: (untyped user) -> untyped
+end

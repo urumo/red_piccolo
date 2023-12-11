@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class NoTitleError < StandardError
+    class NoTitleError < ApplicationError
       def message = I18n.t('errors.no_title')
     end
   end

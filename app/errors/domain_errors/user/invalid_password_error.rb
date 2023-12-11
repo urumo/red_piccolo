@@ -2,7 +2,7 @@
 
 module DomainErrors
   module User
-    class InvalidPasswordError < StandardError
+    class InvalidPasswordError < ApplicationError
       def message = I18n.t('errors.invalid_password')
     end
   end

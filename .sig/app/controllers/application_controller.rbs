@@ -1,0 +1,19 @@
+class ApplicationController < ActionController::Base
+  @current_user: untyped
+
+  include Modules::HttpErrorHandler
+
+  def authorize_user: () -> untyped
+
+  def session_token: () -> untyped
+
+  def current_user: () -> untyped
+
+  def redirect_to_login: () -> untyped
+
+  private
+
+  def wrap_in_error_handler: () { () -> untyped } -> untyped
+
+  def set_new_csrf_token: () -> (nil | untyped)
+end

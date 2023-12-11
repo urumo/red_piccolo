@@ -1,0 +1,11 @@
+class User < ApplicationRecord
+  @full_name: untyped
+
+  @password_present: untyped
+
+  def full_name: () -> untyped
+
+  private
+
+  def password_present?: () -> untyped
+end

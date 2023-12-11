@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class UserNotInChatError < StandardError
+    class UserNotInChatError < ApplicationError
       def message = I18n.t('errors.user_not_in_chat')
     end
   end

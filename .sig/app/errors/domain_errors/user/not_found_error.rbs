@@ -1,0 +1,7 @@
+module DomainErrors
+  module User
+    class NotFoundError < ApplicationError
+      def message: () -> untyped
+    end
+  end
+end

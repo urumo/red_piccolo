@@ -1,0 +1,4 @@
+module Types
+  class ChatType < Types::BaseObject
+  end
+end

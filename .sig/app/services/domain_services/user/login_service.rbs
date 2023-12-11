@@ -1,0 +1,23 @@
+module DomainServices
+  module User
+    class LoginService < ApplicationService
+      @email: untyped
+
+      @password: untyped
+
+      attr_reader email: untyped
+
+      attr_reader password: untyped
+
+      def initialize: (untyped email, untyped password) -> void
+
+      def call: () -> untyped
+
+      private
+
+      def find_user: () -> untyped
+
+      def validate_password_for: (untyped user) -> untyped
+    end
+  end
+end

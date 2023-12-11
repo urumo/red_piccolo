@@ -1,0 +1,17 @@
+module DomainServices
+  module Chat
+    class DeleteChatService < ApplicationService
+      @user: untyped
+
+      @chat: untyped
+
+      attr_reader user: untyped
+
+      attr_reader chat: untyped
+
+      def initialize: (untyped user, untyped chat) -> void
+
+      def call: () -> untyped
+    end
+  end
+end

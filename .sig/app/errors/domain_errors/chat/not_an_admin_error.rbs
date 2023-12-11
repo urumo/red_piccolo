@@ -1,0 +1,7 @@
+module DomainErrors
+  module Chat
+    class NotAnAdminError < ApplicationError
+      def message: () -> untyped
+    end
+  end
+end

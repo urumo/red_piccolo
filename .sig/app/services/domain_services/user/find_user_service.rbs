@@ -1,0 +1,13 @@
+module DomainServices
+  module User
+    class FindUserService < ApplicationService
+      @criteria: untyped
+
+      attr_reader criteria: untyped
+
+      def initialize: (untyped criteria) -> void
+
+      def call: () -> untyped
+    end
+  end
+end

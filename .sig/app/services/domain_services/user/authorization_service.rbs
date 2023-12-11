@@ -1,0 +1,13 @@
+module DomainServices
+  module User
+    class AuthorizationService < ApplicationService
+      @token: untyped
+
+      attr_reader token: untyped
+
+      def initialize: (untyped token) -> void
+
+      def call: () -> untyped
+    end
+  end
+end
