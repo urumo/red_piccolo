@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class NotAnAdminError < StandardError
+    class NotAnAdminError < ApplicationError
       def message = I18n.t('errors.not_an_admin')
     end
   end

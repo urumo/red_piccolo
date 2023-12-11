@@ -1,0 +1,9 @@
+module Modules
+  module User
+    module AuthHandler
+      @current_user: untyped
+
+      def with_authorization: () { () -> nil } -> Types::BaseObject?
+    end
+  end
+end

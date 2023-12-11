@@ -1,0 +1,7 @@
+class Chat < ApplicationRecord
+  def owner: () -> User
+
+  def admins: () -> Array[User]
+
+  def admin_or_owner?: (User user) -> bool
+end

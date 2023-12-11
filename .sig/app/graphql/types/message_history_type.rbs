@@ -1,0 +1,4 @@
+module Types
+  class MessageHistoryType < Types::BaseObject
+  end
+end

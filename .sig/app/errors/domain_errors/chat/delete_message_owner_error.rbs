@@ -1,0 +1,7 @@
+module DomainErrors
+  module Chat
+    class DeleteMessageOwnerError < ApplicationError
+      def message: () -> string
+    end
+  end
+end

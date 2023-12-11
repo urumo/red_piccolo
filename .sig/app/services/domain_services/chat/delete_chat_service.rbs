@@ -1,0 +1,17 @@
+module DomainServices
+  module Chat
+    class DeleteChatService < ApplicationService
+      @user: ::User
+
+      @chat: ::Chat
+
+      attr_reader user: ::User
+
+      attr_reader chat: ::Chat
+
+      def initialize: (::User user, ::Chat chat) -> void
+
+      def call: () -> ::Chat
+    end
+  end
+end

@@ -1,0 +1,7 @@
+module DomainErrors
+  module User
+    class SelfBlockError < ApplicationError
+      def message: () -> string
+    end
+  end
+end

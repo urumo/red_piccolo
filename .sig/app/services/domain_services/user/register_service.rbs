@@ -1,0 +1,21 @@
+module DomainServices
+  module User
+    class RegisterService < ApplicationService
+      @email: string
+
+      @password: string
+
+      @password_confirmation: string
+
+      attr_reader email: string
+
+      attr_reader password: string
+
+      attr_reader password_confirmation: string
+
+      def initialize: (string email, string password, string password_confirmation) -> void
+
+      def call: () -> bool
+    end
+  end
+end

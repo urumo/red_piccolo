@@ -1,0 +1,15 @@
+module ApplicationServices
+  class ErrorReportService
+    TG_URL: "https://api.telegram.org/bot"
+
+    TG_METHOD: "sendMessage"
+
+    TG_KEY: String
+
+    TG_CHAT_ID: String
+
+    def self.send_to_telegram: (string message) -> void
+
+    def self.report_error: (string error, context: string, handled: bool, level: Symbol, src: string) -> void
+  end
+end

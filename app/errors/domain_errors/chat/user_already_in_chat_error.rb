@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class UserAlreadyInChatError < StandardError
+    class UserAlreadyInChatError < ApplicationError
       def message = I18n.t('errors.user_already_in_chat')
     end
   end

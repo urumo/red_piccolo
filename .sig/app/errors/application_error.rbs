@@ -1,0 +1,7 @@
+class ApplicationError < StandardError
+  DEFAULT_ERROR_MESSAGE: "CHANGE ME"
+
+  def initialize: (string | nil msg) -> void
+
+  def message: -> string
+end

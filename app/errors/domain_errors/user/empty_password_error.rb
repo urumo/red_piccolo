@@ -2,7 +2,7 @@
 
 module DomainErrors
   module User
-    class EmptyPasswordError < StandardError
+    class EmptyPasswordError < ApplicationError
       def message = I18n.t('errors.empty_password')
     end
   end

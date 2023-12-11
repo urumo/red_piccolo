@@ -2,7 +2,7 @@
 
 module DomainErrors
   module User
-    class NewPasswordDoesntMatchError < StandardError
+    class NewPasswordDoesntMatchError < ApplicationError
       def message = I18n.t('errors.new_password_doesnt_match')
     end
   end

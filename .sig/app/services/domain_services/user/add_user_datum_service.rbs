@@ -1,0 +1,25 @@
+module DomainServices
+  module User
+    class AddUserDatumService < ApplicationService
+      @first_name: string
+
+      @last_name: string
+
+      @date_of_birth: Date
+
+      @user: ::User
+
+      attr_reader first_name: string
+
+      attr_reader last_name: string
+
+      attr_reader date_of_birth: Date
+
+      attr_reader user: ::User
+
+      def initialize: (::User user, string first_name, string last_name, Date date_of_birth) -> void
+
+      def call: () -> ::User
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module DomainServices
+  module Chat
+    class EditMessageService < ApplicationService
+      @user: ::User
+
+      @message: ChatMessage
+
+      @new_content: string
+
+      attr_reader user: ::User
+
+      attr_reader message: ChatMessage
+
+      attr_reader new_content: string
+
+      def initialize: (::User user, ChatMessage message, string new_content) -> void
+
+      def call: () -> ChatMessage
+    end
+  end
+end

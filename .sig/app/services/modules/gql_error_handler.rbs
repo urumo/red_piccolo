@@ -1,0 +1,7 @@
+module Modules
+  module GqlErrorHandler
+    include WithTransaction
+
+    def with_error_handling: () { () -> nil } -> Types::BaseObject
+  end
+end

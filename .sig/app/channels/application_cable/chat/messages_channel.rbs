@@ -1,0 +1,9 @@
+module ApplicationCable
+  module Chat
+    class MessagesChannel < ApplicationCable::Channel
+      def subscribed: () -> nil
+
+      def unsubscribed: () -> nil
+    end
+  end
+end

@@ -1,0 +1,7 @@
+module DomainErrors
+  module User
+    class InvalidTokenError < ApplicationError
+      def message: () -> string
+    end
+  end
+end

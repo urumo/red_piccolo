@@ -1,0 +1,11 @@
+module Modules
+  module User
+    module Graphql
+      include GqlErrorHandler
+
+      include AuthHandler
+
+      def me: () -> Types::UserType?
+    end
+  end
+end

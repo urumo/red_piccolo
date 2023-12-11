@@ -1,0 +1,7 @@
+module DomainErrors
+  module Chat
+    class NoTitleError < ApplicationError
+      def message: () -> string
+    end
+  end
+end

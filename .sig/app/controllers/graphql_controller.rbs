@@ -1,0 +1,10 @@
+class GraphqlController < ApplicationController
+  # skip_around_action :wrap_in_error_handler
+  def execute: () -> untyped
+
+  private
+
+  def prepare_variables: (string | Hash[untyped, untyped] | ActionController::Parameters variables_param) -> nil
+
+  def handle_error_in_development: (StandardError error) -> nil
+end

@@ -1,0 +1,7 @@
+module Mutations
+  class BaseMutation < GraphQL::Schema::RelayClassicMutation
+    include Modules::GqlErrorHandler
+
+    include Modules::User::AuthHandler
+  end
+end

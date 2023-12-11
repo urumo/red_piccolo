@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class NoOwnerError < StandardError
+    class NoOwnerError < ApplicationError
       def message = I18n.t('errors.no_owner')
     end
   end

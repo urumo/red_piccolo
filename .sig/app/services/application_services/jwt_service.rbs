@@ -1,0 +1,9 @@
+module ApplicationServices
+  class JwtService
+    HMAC_SECRET: String
+
+    def self.encode: (::Hash[untyped, untyped] payload, int? expire) -> string
+
+    def self.decode: (string token) -> ::Hash[untyped, untyped]?
+  end
+end

@@ -2,7 +2,7 @@
 
 module DomainErrors
   module Chat
-    class DeleteMessageOwnerError < StandardError
+    class DeleteMessageOwnerError < ApplicationError
       def message = I18n.t('errors.delete_message_owner')
     end
   end

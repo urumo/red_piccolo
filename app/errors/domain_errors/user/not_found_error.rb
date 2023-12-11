@@ -2,7 +2,7 @@
 
 module DomainErrors
   module User
-    class NotFoundError < StandardError
+    class NotFoundError < ApplicationError
       def message = I18n.t('errors.user_not_found')
     end
   end

@@ -1,0 +1,5 @@
+class ChatMessage < ApplicationRecord
+  def history: () -> Array[Hash[Symbol, string | Time]]
+
+  def edited?: () -> bool
+end

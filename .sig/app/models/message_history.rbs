@@ -1,0 +1,2 @@
+class MessageHistory < ApplicationRecord
+end

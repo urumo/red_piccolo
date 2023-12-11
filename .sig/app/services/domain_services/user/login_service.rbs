@@ -1,0 +1,23 @@
+module DomainServices
+  module User
+    class LoginService < ApplicationService
+      @email: string
+
+      @password: string
+
+      attr_reader email: string
+
+      attr_reader password: string
+
+      def initialize: (string email, string password) -> void
+
+      def call: () -> string
+
+      private
+
+      def find_user: () -> ::User
+
+      def validate_password_for: (::User user) -> bool
+    end
+  end
+end

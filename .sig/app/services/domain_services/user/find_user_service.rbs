@@ -1,0 +1,13 @@
+module DomainServices
+  module User
+    class FindUserService < ApplicationService
+      @criteria: string
+
+      attr_reader criteria: string
+
+      def initialize: (string criteria) -> void
+
+      def call: () -> Array[::User]
+    end
+  end
+end

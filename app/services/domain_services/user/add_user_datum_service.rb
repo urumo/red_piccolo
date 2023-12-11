@@ -13,7 +13,6 @@ module DomainServices
         @user = user
       end
 
-      # @return <User>
       def call
         user_setting = user.user_setting
         user_setting.first_name = first_name || user.user_setting.first_name

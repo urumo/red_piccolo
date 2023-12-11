@@ -45,5 +45,6 @@ group :development do
   gem 'graphiql-rails'
   gem 'rack-mini-profiler'
   gem 'spring'
+  gem 'typeprof', '~> 0.21.8'
   gem 'web-console'
 end

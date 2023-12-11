@@ -1,0 +1,35 @@
+class UserController < ApplicationController
+  @user: User
+
+  @editable: bool
+
+  def index: () -> nil
+
+  def logout: () -> nil
+
+  def login: () -> nil
+
+  def register: () -> nil
+
+  def id: () -> nil
+
+  def block: () -> nil
+
+  def settings: () -> nil
+
+  def auth: () -> nil
+
+  private
+
+  def update_user_settings: (ActionController::Parameters params) -> void
+
+  def user: () -> User
+
+  def redirect_to_root: () -> nil
+
+  def set_editable: () -> bool
+
+  def change_password: (ActionController::Parameters params) -> bool
+
+  def generate_jwt: () -> nil
+end
