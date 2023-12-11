@@ -1,21 +1,21 @@
 module DomainServices
   module User
     class RegisterService < ApplicationService
-      @email: untyped
+      @email: string
 
-      @password: untyped
+      @password: string
 
-      @password_confirmation: untyped
+      @password_confirmation: string
 
-      attr_reader email: untyped
+      attr_reader email: string
 
-      attr_reader password: untyped
+      attr_reader password: string
 
-      attr_reader password_confirmation: untyped
+      attr_reader password_confirmation: string
 
-      def initialize: (untyped email, untyped password, untyped password_confirmation) -> void
+      def initialize: (string email, string password, string password_confirmation) -> void
 
-      def call: () -> untyped
+      def call: () -> bool
     end
   end
 end

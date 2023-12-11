@@ -1,7 +1,7 @@
 class Chat < ApplicationRecord
-  def owner: () -> untyped
+  def owner: () -> User
 
-  def admins: () -> untyped
+  def admins: () -> Array[User]
 
-  def admin_or_owner?: (untyped user) -> untyped
+  def admin_or_owner?: (User user) -> bool
 end

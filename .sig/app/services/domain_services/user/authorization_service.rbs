@@ -1,13 +1,13 @@
 module DomainServices
   module User
     class AuthorizationService < ApplicationService
-      @token: untyped
+      @token: string
 
-      attr_reader token: untyped
+      attr_reader token: string
 
-      def initialize: (untyped token) -> void
+      def initialize: (string token) -> void
 
-      def call: () -> untyped
+      def call: () -> ::User?
     end
   end
 end

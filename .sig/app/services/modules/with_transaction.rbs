@@ -1,5 +1,5 @@
 module Modules
   module WithTransaction
-    def with_transaction: () { () -> untyped } -> untyped
+    def with_transaction: () { () -> nil } -> nil
   end
 end

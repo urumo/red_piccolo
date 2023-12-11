@@ -1,35 +1,35 @@
 class UserController < ApplicationController
-  @user: untyped
+  @user: User
 
-  @editable: untyped
+  @editable: bool
 
-  def index: () -> untyped
+  def index: () -> nil
 
-  def logout: () -> untyped
+  def logout: () -> nil
 
-  def login: () -> untyped
+  def login: () -> nil
 
-  def register: () -> untyped
+  def register: () -> nil
 
   def id: () -> nil
 
   def block: () -> nil
 
-  def settings: () -> untyped
+  def settings: () -> nil
 
-  def auth: () -> untyped
+  def auth: () -> nil
 
   private
 
-  def update_user_settings: (untyped params) -> untyped
+  def update_user_settings: (ActionController::Parameters params) -> void
 
-  def user: () -> untyped
+  def user: () -> User
 
-  def redirect_to_root: () -> (untyped | nil)
+  def redirect_to_root: () -> nil
 
-  def set_editable: () -> untyped
+  def set_editable: () -> bool
 
-  def change_password: (untyped params) -> (nil | untyped)
+  def change_password: (ActionController::Parameters params) -> bool
 
-  def generate_jwt: () -> untyped
+  def generate_jwt: () -> nil
 end

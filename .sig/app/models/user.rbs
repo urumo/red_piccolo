@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  @full_name: untyped
+  @full_name: string
 
-  @password_present: untyped
+  @password_present: bool
 
-  def full_name: () -> untyped
+  def full_name: () -> string
 
   private
 
-  def password_present?: () -> untyped
+  def password_present?: () -> bool
 end

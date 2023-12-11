@@ -1,26 +1,25 @@
 module DomainServices
   module User
     class AddUserDatumService < ApplicationService
-      @first_name: untyped
+      @first_name: string
 
-      @last_name: untyped
+      @last_name: string
 
-      @date_of_birth: untyped
+      @date_of_birth: Date
 
-      @user: untyped
+      @user: ::User
 
-      attr_reader first_name: untyped
+      attr_reader first_name: string
 
-      attr_reader last_name: untyped
+      attr_reader last_name: string
 
-      attr_reader date_of_birth: untyped
+      attr_reader date_of_birth: Date
 
-      attr_reader user: untyped
+      attr_reader user: ::User
 
-      def initialize: (untyped user, untyped first_name, untyped last_name, untyped date_of_birth) -> void
+      def initialize: (::User user, string first_name, string last_name, Date date_of_birth) -> void
 
-      # @return <User>
-      def call: () -> untyped
+      def call: () -> ::User
     end
   end
 end

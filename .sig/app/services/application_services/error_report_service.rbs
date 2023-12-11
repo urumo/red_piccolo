@@ -4,12 +4,12 @@ module ApplicationServices
 
     TG_METHOD: "sendMessage"
 
-    TG_KEY: untyped
+    TG_KEY: String
 
-    TG_CHAT_ID: untyped
+    TG_CHAT_ID: String
 
-    def self.send_to_telegram: (untyped message) -> untyped
+    def self.send_to_telegram: (string message) -> void
 
-    def self.report_error: (untyped error, context: untyped, handled: untyped, level: untyped, src: untyped) -> untyped
+    def self.report_error: (string error, context: string, handled: bool, level: Symbol, src: string) -> void
   end
 end
