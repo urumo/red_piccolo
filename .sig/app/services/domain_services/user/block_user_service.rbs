@@ -1,17 +1,17 @@
 module DomainServices
   module User
     class BlockUserService < ApplicationService
-      @current_user: untyped
+      @current_user: ::User
 
-      @other_user: untyped
+      @other_user: ::User
 
-      attr_reader current_user: untyped
+      attr_reader current_user: ::User
 
-      attr_reader other_user: untyped
+      attr_reader other_user: ::User
 
-      def initialize: (untyped current_user, untyped other_user) -> void
+      def initialize: (::User current_user, ::User other_user) -> void
 
-      def call: () -> untyped
+      def call: () -> BlockedUser
     end
   end
 end

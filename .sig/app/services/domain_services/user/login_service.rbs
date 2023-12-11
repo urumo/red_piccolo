@@ -1,23 +1,23 @@
 module DomainServices
   module User
     class LoginService < ApplicationService
-      @email: untyped
+      @email: string
 
-      @password: untyped
+      @password: string
 
-      attr_reader email: untyped
+      attr_reader email: string
 
-      attr_reader password: untyped
+      attr_reader password: string
 
-      def initialize: (untyped email, untyped password) -> void
+      def initialize: (string email, string password) -> void
 
-      def call: () -> untyped
+      def call: () -> string
 
       private
 
-      def find_user: () -> untyped
+      def find_user: () -> ::User
 
-      def validate_password_for: (untyped user) -> untyped
+      def validate_password_for: (::User user) -> bool
     end
   end
 end
