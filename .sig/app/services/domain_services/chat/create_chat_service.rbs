@@ -1,21 +1,21 @@
 module DomainServices
   module Chat
     class CreateChatService < ApplicationService
-      @current_user: untyped
+      @current_user: User
 
-      @chat_name: untyped
+      @chat_name: String
 
-      @description: untyped
+      @description: String
 
-      attr_reader current_user: untyped
+      attr_reader current_user: User
 
-      attr_reader chat_name: untyped
+      attr_reader chat_name: String
 
-      attr_reader description: untyped
+      attr_reader description: String
 
-      def initialize: (untyped current_user, untyped chat_name, untyped description) -> void
+      def initialize: (User current_user, String chat_name, String description) -> void
 
-      def call: () -> untyped
+      def call: () -> ::Chat
     end
   end
 end

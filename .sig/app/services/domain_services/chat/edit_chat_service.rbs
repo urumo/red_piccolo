@@ -1,25 +1,25 @@
 module DomainServices
   module Chat
     class EditChatService < ApplicationService
-      @user: untyped
+      @user: ::User
 
-      @chat: untyped
+      @chat: ::Chat
 
-      @title: untyped
+      @title: String
 
-      @description: untyped
+      @description: String
 
-      attr_reader user: untyped
+      attr_reader user: ::User
 
-      attr_reader chat: untyped
+      attr_reader chat: ::Chat
 
-      attr_reader title: untyped
+      attr_reader title: string
 
-      attr_reader description: untyped
+      attr_reader description: string
 
-      def initialize: (untyped user, untyped chat, untyped title, untyped description) -> void
+      def initialize: (::User user, ::Chat chat, string title, string description) -> void
 
-      def call: () -> untyped
+      def call: () -> ::Chat
     end
   end
 end

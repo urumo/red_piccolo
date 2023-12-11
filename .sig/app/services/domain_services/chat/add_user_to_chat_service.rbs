@@ -1,27 +1,27 @@
 module DomainServices
   module Chat
     class AddUserToChatService < ApplicationService
-      @chat: untyped
+      @chat: ::Chat
 
-      @current_user: untyped
+      @current_user: ::User
 
-      @user: untyped
+      @user: ::User
 
-      attr_reader chat: untyped
+      attr_reader chat: ::Chat
 
-      attr_reader current_user: untyped
+      attr_reader current_user: ::User
 
-      attr_reader user: untyped
+      attr_reader user: ::User
 
-      def initialize: (untyped chat, untyped current_user, untyped user) -> void
+      def initialize: (::Chat chat, ::User current_user, ::User user) -> void
 
-      def call: () -> untyped
+      def call: () -> ::Chat
 
       private
 
-      def user_in_chat?: () -> untyped
+      def user_in_chat?: () -> bool
 
-      def current_user_in_chat?: () -> untyped
+      def current_user_in_chat?: () -> bool
     end
   end
 end

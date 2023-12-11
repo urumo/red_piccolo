@@ -4,7 +4,7 @@ class GraphqlController < ApplicationController
 
   private
 
-  def prepare_variables: (untyped variables_param) -> untyped
+  def prepare_variables: (string | Hash[untyped, untyped] | ActionController::Parameters variables_param) -> nil
 
-  def handle_error_in_development: (untyped error) -> untyped
+  def handle_error_in_development: (StandardError error) -> nil
 end

@@ -2,6 +2,6 @@ module Modules
   module HttpErrorHandler
     include Modules::WithTransaction
 
-    def with_http_error_handling: () { () -> untyped } -> untyped
+    def with_http_error_handling: () { () -> nil } -> nil
   end
 end

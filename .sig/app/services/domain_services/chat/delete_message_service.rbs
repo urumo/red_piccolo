@@ -1,17 +1,17 @@
 module DomainServices
   module Chat
     class DeleteMessageService < ApplicationService
-      @user: untyped
+      @user: ::User
 
-      @message: untyped
+      @message: ::ChatMessage
 
-      attr_reader user: untyped
+      attr_reader user: ::User
 
-      attr_reader message: untyped
+      attr_reader message: ::ChatMessage
 
-      def initialize: (untyped user, untyped message) -> void
+      def initialize: (::User user, ::ChatMessage message) -> void
 
-      def call: () -> untyped
+      def call: () -> ChatMessage
     end
   end
 end

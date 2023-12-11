@@ -1,29 +1,29 @@
 module DomainServices
   module Chat
     class FindMessageService < ApplicationService
-      @user: untyped
+      @user: ::User
 
-      @chat: untyped
+      @chat: ::Chat
 
-      @content: untyped
+      @content: string
 
-      attr_reader user: untyped
+      attr_reader user: ::User
 
-      attr_reader chat: untyped
+      attr_reader chat: ::Chat
 
-      attr_reader content: untyped
+      attr_reader content: string
 
-      def initialize: (untyped user, untyped chat, untyped content) -> void
+      def initialize: (::User user, ::Chat chat, string content) -> void
 
-      def call: () -> untyped
+      def call: () -> Array[ChatMessage]
 
       private
 
-      def global_search?: () -> untyped
+      def global_search?: () -> bool
 
-      def global_search: () -> untyped
+      def global_search: () -> Array[ChatMessage]
 
-      def chat_search: () -> untyped
+      def chat_search: () -> Array[ChatMessage]
     end
   end
 end

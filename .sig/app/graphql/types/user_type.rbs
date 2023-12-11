@@ -1,4 +1,4 @@
 module Types
-  class UserType < Types::BaseObject
+  class UserType < BaseObject
   end
 end
