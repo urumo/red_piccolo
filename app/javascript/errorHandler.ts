@@ -1,4 +1,4 @@
-export default (err: Error, instance: unknown, info: string) => {
+const handle = (err: Error, instance: string, info: string) => {
   if (!import.meta.env.VITE_TG_KEY || !import.meta.env.VITE_TG_CHAT_ID) {
     console.error('Telegram bot key or chat ID is not set.');
     return;
@@ -15,3 +15,6 @@ export default (err: Error, instance: unknown, info: string) => {
     })
   });
 };
+
+export default (err: unknown, instance: unknown, info: string) =>
+  handle(err as Error, instance as string, info);

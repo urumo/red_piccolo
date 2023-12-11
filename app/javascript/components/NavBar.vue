@@ -17,7 +17,7 @@ const logout = async (e: Event) => {
       }
     });
     authStore.logout();
-    window.location = '/';
+    window.location.href = '/';
   } catch (e) {
     ErrorHandler(e, 'logout', 'NavBar.vue');
   }

@@ -32,12 +32,14 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'memory_profiler', '~> 1.0'
   gem 'rspec-rails', '~> 6.0'
   gem 'rubocop', '~> 1.57'
   gem 'rubocop-factory_bot', '~> 2.24'
   gem 'rubocop-graphql', '~> 1.4'
   gem 'rubocop-rails', '~> 2.22'
   gem 'rubocop-rspec', '~> 2.25'
+  gem 'stackprof', '~> 0.2.25'
 end
 
 group :development do

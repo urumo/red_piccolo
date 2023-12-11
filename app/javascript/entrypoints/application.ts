@@ -10,15 +10,16 @@ import urlq, { cacheExchange, fetchExchange } from '@urql/vue';
 import VueCookies from 'vue-cookies';
 import { useAuthorizationStore } from '@/stores/useAuthorization';
 import { retryExchange } from '@urql/exchange-retry';
+import type { RetryExchangeOptions } from '@urql/exchange-retry';
 import ErrorHandler from '@/errorHandler';
 
 const vuetify = createVuetify({});
-const retryOptions = {
+const retryOptions: RetryExchangeOptions = {
   initialDelayMs: 1000,
   maxDelayMs: 15000,
   randomDelay: true,
   maxNumberAttempts: 2,
-  retryIf: (err) => err && err.networkError
+  retryIf: (err, ops) => !!(err && err.networkError)
 };
 
 const app = createApp({
@@ -27,7 +28,7 @@ const app = createApp({
     if (tokenId) {
       const authStore = useAuthorizationStore();
       authStore.setToken(tokenId);
-      window.location = '/';
+      window.location.href = '/';
     }
   },
   render: () => h(App)
