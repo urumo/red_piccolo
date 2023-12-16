@@ -43,5 +43,6 @@ module RedPiccolo
     # Don't generate system test files.
     config.generators.system_tests = nil
     Rails.autoloaders.main.ignore(Rails.root.join('lib/generators'))
+    config.active_job.queue_adapter = :sidekiq
   end
 end
