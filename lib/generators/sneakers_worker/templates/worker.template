@@ -5,6 +5,7 @@ module <%= mod %>
   <% end %>
   class <%= klass %>Worker
     include Sneakers::Worker
+    include Modules::AmqpErrorReporter
     from_queue '<%= name.underscore %>',
                exchange: 'red_piccolo',
                exchange_type: 'direct',
@@ -12,11 +13,15 @@ module <%= mod %>
                threads: 1,
                durable: true
 
-    def work(_msg)
-      ack!
-    rescue StandardError => e
-      logger.error e.message
-      requeue!
+    def work(msg)
+    with_amqp_error_reporting do
+          message = MessagePack.unpack(msg, symbolize_keys: true)
+          logger.info "Received message: #{message}"
+          ack!
+        end
+      rescue StandardError => e
+        logger.error [e.class, e.message, e.backtrace[0..4]]
+        requeue!
     end
   end
   <% modules.reverse.each do |_mod| %>
