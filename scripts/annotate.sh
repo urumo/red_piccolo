@@ -1,19 +1,3 @@
-## find a list of all files ending with .rb in the current directory
-#
-#find app -type f -name '*.rb' | while read file; do
-#  echo "Processing: ${file}"
-#  # check if the file exists in ./sig folder
-#  if [ -f "./.sig/${file}" ]; then
-#    echo "File exists"
-#  else
-#    echo "File does not exist"
-#    # create the path to the file
-#    mkdir -p "./.sig/${file}"
-#    # create the file
-#    touch "./.sig/${file}"
-#  fi
-#done
-
 find app -type f -name '*.rb' | while read -r file; do
   echo "Processing: ${file}"
 

@@ -1,0 +1,6 @@
+
+:scheduler:
+  :schedule:
+#    hello_world:
+#      cron: '*/2 * * * * *'
+#      class: HelloWorldJob

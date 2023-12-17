@@ -1,0 +1,9 @@
+Description:
+    Generate a sneakers worker with configuration
+
+Example:
+    bin/rails generate sneakers_worker Thing
+
+    This will create:
+        app/workers/thing_worker.rb
+        spec/workers/thing_worker_spec.rb

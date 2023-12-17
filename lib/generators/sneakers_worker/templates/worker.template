@@ -1,0 +1,41 @@
+<% modules = name.split('::') %>
+<% klass = modules.pop %>
+<% modules.each do |mod| %>
+module <%= mod %>
+<% end %>
+class <%= klass %>Worker
+  include Sneakers::Worker
+  include Modules::AmqpErrorReporter
+
+  from_queue '<%= name.underscore %>',
+             exchange: 'red_piccolo',
+             exchange_type: 'direct',
+             workers: 1,
+             threads: 1,
+             durable: true
+
+  # This method handles incoming messages from the queue.
+  # It unpacks the message using MessagePack, logs the message,
+  # and acknowledges the message once processed.
+  #
+  # In case of a StandardError exception, it logs the exception
+  # details and requeues the message.
+  #
+  # @param msg [String] the message payload from the queue, encoded in MessagePack format
+  # @return [:ack | :reject | :requeue]
+  def work(msg)
+    begin
+      with_amqp_error_reporting do
+        message = JSON.parse(msg, symbolize_keys: true)
+        logger.info "Received message: #{message}"
+        ack!
+      end
+    rescue StandardError => e
+      logger.error [e.class, e.message, e.backtrace[0..4]]
+      requeue!
+    end
+  end
+end
+<% modules.reverse.each do |_mod| %>
+end
+<% end %>
