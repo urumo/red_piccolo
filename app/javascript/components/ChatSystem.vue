@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
-
+<script setup lang="ts">
+import { useMessageStreamStore } from '@/stores/useMessageStream';
+const messageStreamStore = useMessageStreamStore();
+</script>
 <template>
   <div class="messenger">
     <aside class="sidebar">
@@ -15,9 +17,9 @@
     </aside>
     <section class="chat-window">
       <ul class="chat-messages">
-        <li>Message 1 from User</li>
-        <li>Message 2 from Contact</li>
-        <!-- Add more messages here -->
+        <li v-for="message in messageStreamStore.messages" :key="message.id">
+          {{ message.content }}
+        </li>
       </ul>
       <div class="input-group">
         <input type="text" class="message-input" placeholder="Type a message..." />

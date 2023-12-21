@@ -1,6 +1,5 @@
 <script async setup lang="ts">
 import { useCounterStore } from '@/stores/counter';
-import { useAuthorizationStore } from '@/stores/useAuthorization';
 
 const counter = useCounterStore();
 </script>

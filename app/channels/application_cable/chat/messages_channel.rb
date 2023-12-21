@@ -4,11 +4,13 @@ module ApplicationCable
   module Chat
     class MessagesChannel < ApplicationCable::Channel
       def subscribed
-        # stream_from "some_channel"
+        Rails.logger.debug params
+        @user = User.find(params[:user_id])
+        stream_for "messages_#{@user.id}"
       end
 
       def unsubscribed
-        # Any cleanup needed when channel is unsubscribed
+        Rails.logger.debug params
       end
     end
   end

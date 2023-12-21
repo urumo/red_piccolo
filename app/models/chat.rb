@@ -5,11 +5,19 @@ class Chat < ApplicationRecord
   has_many :users, through: :chat_participants
   has_many :chat_messages, dependent: :destroy
 
+  scope :with_users, -> { includes(:users) }
+
+  scope :with_messages, -> { includes(:chat_messages) }
+
+  validates :title, presence: true, length: { minimum: 1 }
+
   def owner = users.find_by(chat_participants: { user_role: :owner })
+
   def admins = users.where(chat_participants: { user_role: :admin })
 
   after_create do
     chat_participants.update!(user: users.first, user_role: :owner) unless owner
   end
+
   def admin_or_owner?(user) = admins.include?(user) || owner == user
 end

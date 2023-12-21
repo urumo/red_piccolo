@@ -36,7 +36,7 @@ async function fetchWrapper(
 
     return response;
   } catch (error) {
-    ErrorHandler(error);
+    ErrorHandler(error, 'fetchWrapper', 'fetchWrapper'  );
   }
 }
 

@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  default_scope { with_user_setting }
+  scope :with_user_setting, -> { includes(:user_setting) }
+  scope :with_blocked_users, -> { includes(:blocked_users) }
+  scope :with_chats, -> { includes(chats: :chat_messages) }
+  scope :with_chat_messages, -> { includes(:chat_messages) }
+  scope :with_all, lambda {
+    with_user_setting
+      .with_blocked_users
+      .with_chats
+  }
   has_secure_password
   has_one :user_setting, dependent: :destroy
   has_many :blocked_users, dependent: :destroy
@@ -31,13 +41,13 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: I18n.t('user.not_a_valid_email') }
   validates :password, length: { minimum: 8, message: I18n.t('user.password.too_short', count: 8) },
-                       if: :password_present?
+            if: :password_present?
   validates :password, format: { with: /\W/, message: I18n.t('user.password.special_character_missing') },
-                       if: :password_present?
+            if: :password_present?
   validates :password, format: { with: /[a-z]/, message: I18n.t('user.password.lowercase_missing') },
-                       if: :password_present?
+            if: :password_present?
   validates :password, format: { with: /[A-Z]/, message: I18n.t('user.password.uppercase_missing') },
-                       if: :password_present?
+            if: :password_present?
   validates :password, format: { with: /\d/, message: I18n.t('user.password.number_missing') }, if: :password_present?
 
   private

@@ -1,3 +1,4 @@
+
 declare module '*/changePassword.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -5,6 +6,7 @@ declare module '*/changePassword.graphql' {
 
   export default defaultDocument;
 }
+    
 
 declare module '*/getCurrentUser.graphql' {
   import { DocumentNode } from 'graphql';
@@ -13,6 +15,7 @@ declare module '*/getCurrentUser.graphql' {
 
   export default defaultDocument;
 }
+    
 
 declare module '*/login.graphql' {
   import { DocumentNode } from 'graphql';
@@ -21,6 +24,7 @@ declare module '*/login.graphql' {
 
   export default defaultDocument;
 }
+    
 
 declare module '*/register.graphql' {
   import { DocumentNode } from 'graphql';
@@ -29,3 +33,4 @@ declare module '*/register.graphql' {
 
   export default defaultDocument;
 }
+    

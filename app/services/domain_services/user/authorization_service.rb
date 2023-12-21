@@ -13,7 +13,7 @@ module DomainServices
 
       def call
         payload = ApplicationServices::JwtService.decode(token)
-        ::User.find(payload['user_id'])
+        ::User.with_user_setting.find(payload['user_id'])
       rescue JWT::DecodeError, ActiveRecord::RecordNotFound
         raise DomainErrors::User::AuthorizationError
       end

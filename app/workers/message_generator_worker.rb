@@ -1,17 +1,15 @@
-<% modules = name.split('::') %>
-<% klass = modules.pop %>
-<% modules.each do |mod| %>
-module <%= mod %>
-<% end %>
-class <%= klass %>Worker
+
+
+
+class MessageGeneratorWorker
   include Sneakers::Worker
   include Modules::AmqpErrorReporter
 
-  from_queue '<%= name.underscore %>',
+  from_queue 'message_generator',
              exchange: 'red_piccolo',
              exchange_type: 'direct',
              workers: 1,
-             threads: 1,
+             threads: 4,
              durable: true
 
   # This method handles incoming messages from the queue.
@@ -24,10 +22,13 @@ class <%= klass %>Worker
   # @param msg [String] the message payload from the queue, encoded in MessagePack format
   # @return [:ack | :reject | :requeue]
   def work(msg)
+    logger.level = Logger::WARN
     begin
       with_amqp_error_reporting do
         message = JSON.parse(msg, symbolize_names: true)
         logger.info "Received message: #{message}"
+        3.times { publish({content: SecureRandom.hex(32)}.to_json, routing_key: 'message_generator') }
+        DomainServices::Chat::SendMessageService.call(User.first, Chat.first, message[:content])
         ack!
       end
     rescue StandardError => e
@@ -36,6 +37,3 @@ class <%= klass %>Worker
     end
   end
 end
-<% modules.reverse.each do |_mod| %>
-end
-<% end %>

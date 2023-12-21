@@ -13,13 +13,14 @@ import { retryExchange } from '@urql/exchange-retry';
 import type { RetryExchangeOptions } from '@urql/exchange-retry';
 import ErrorHandler from '@/errorHandler';
 
+
 const vuetify = createVuetify({});
 const retryOptions: RetryExchangeOptions = {
   initialDelayMs: 1000,
   maxDelayMs: 15000,
   randomDelay: true,
   maxNumberAttempts: 2,
-  retryIf: (err, ops) => !!(err && err.networkError)
+  retryIf: (err) => !!(err && err.networkError)
 };
 
 const app = createApp({
