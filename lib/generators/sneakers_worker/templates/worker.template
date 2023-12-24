@@ -26,7 +26,7 @@ class <%= klass %>Worker
   def work(msg)
     begin
       with_amqp_error_reporting do
-        message = JSON.parse(msg, symbolize_keys: true)
+        message = JSON.parse(msg, symbolize_names: true)
         logger.info "Received message: #{message}"
         ack!
       end

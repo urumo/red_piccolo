@@ -1,2 +1,23 @@
-<h1>User#login</h1>
-<p>Find me in app/views/user/login.html.erb</p>
+<section class="section">
+<h1>Sign in</h1>
+<%= form_tag(login_path) do %>
+  <div class="field">
+    <%= label_tag :email, nil, class: 'label' %>.....
+    <%= email_field_tag :email, nil, class: 'input', placeholder: 'Enter your email' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, nil, class: 'label' %>..
+    <%= password_field_tag :password, nil, class: 'input', placeholder: 'Enter your password' %>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= submit_tag 'Sign In', class: 'button is-primary is-fullwidth' %>
+    </div>
+  </div>
+<% end %>
+<p class="has-text-centered">
+  Don't have an account? <a href='?form_action=register'><span class="red-168-text">S</span>ign up</a>
+</p>
+</section>

@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  scope :chat do
+    post '/', to: 'chat#create'
+    patch '/', to: 'chat#update'
+    get '/', to: 'chat#show'
+    delete '/', to: 'chat#destroy'
+    post '/send_message', to: 'chat#send_message'
+  end
   scope :identity do
     get '/', to: 'user#index'
     get '/auth', to: 'user#auth'
     post '/login', to: 'user#login'
-    delete '/logout', to: 'user#logout'
+    get '/logout', to: 'user#logout'
     post '/register', to: 'user#register'
     patch '/block', to: 'user#block'
     patch '/settings', to: 'user#settings'

@@ -1,11 +1,9 @@
 import { createApp, h } from 'vue';
 import { createPinia } from 'pinia';
-import 'bulma/css/bulma.css';
+// import 'bulma/css/bulma.css';
 import App from '@/layouts/App.vue';
 import router from '@/router';
-import '@mdi/font/css/materialdesignicons.css';
-import 'vuetify/styles';
-import { createVuetify } from 'vuetify';
+// import '@mdi/font/css/materialdesignicons.css';
 import urlq, { cacheExchange, fetchExchange } from '@urql/vue';
 import VueCookies from 'vue-cookies';
 import { useAuthorizationStore } from '@/stores/useAuthorization';
@@ -13,13 +11,12 @@ import { retryExchange } from '@urql/exchange-retry';
 import type { RetryExchangeOptions } from '@urql/exchange-retry';
 import ErrorHandler from '@/errorHandler';
 
-const vuetify = createVuetify({});
 const retryOptions: RetryExchangeOptions = {
   initialDelayMs: 1000,
   maxDelayMs: 15000,
   randomDelay: true,
   maxNumberAttempts: 2,
-  retryIf: (err, ops) => !!(err && err.networkError)
+  retryIf: (err) => !!(err && err.networkError)
 };
 
 const app = createApp({
@@ -42,7 +39,6 @@ app.config.errorHandler = ErrorHandler;
 app.use(createPinia());
 app.use(router);
 app.use(VueCookies, { secure: true, expires: '1D' });
-app.use(vuetify);
 app.use(urlq, {
   url: '/graphql',
   exchanges: [cacheExchange, fetchExchange, retryExchange(retryOptions)],

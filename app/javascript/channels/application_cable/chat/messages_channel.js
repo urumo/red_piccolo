@@ -1,15 +1,19 @@
-import consumer from './consumer';
+// import consumer from '../../consumer';
 
-consumer.subscriptions.create('ApplicationCable::Chat::MessagesChannel', {
-  // connected() {
-  //   // Called when the subscription is ready for use on the server
-  // },
-  //
-  // disconnected() {
-  //   // Called when the subscription has been terminated by the server
-  // },
-  //
-  // received(data) {
-  //   // Called when there's incoming data on the websocket for this channel
-  // }
-});
+// consumer.subscriptions.create({
+//   channel: 'ApplicationCable::Chat::MessagesChannel',
+//   user_id: 1
+// }, {
+//   connected() {
+//     console.log('connected');
+//   },
+//
+//   disconnected() {
+//     console.log('disconnected');
+//   },
+//
+//   received(data) {
+//     console.log(data);
+//     // Called when there's incoming data on the websocket for this channel
+//   }
+// });

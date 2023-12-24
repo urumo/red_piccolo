@@ -1,0 +1,24 @@
+module Presenters
+    <% modules = name.split('::') %>
+    <% klass = modules.pop %>
+    <% modules.each do |mod| %>
+    module <%= mod %>
+    <% end %>
+    class <%= klass %>Presenter < ApplicationPresenter
+      attr_reader <%= attributes.map {|attr| ":#{attr.name}"}.join ', ' %>
+
+      def initialize(<%= attributes.map {|attr| attr.name}.join ', ' %>)
+        <% attributes.each do |attr| %>
+        @<%= attr.name %> = <%= attr.name %>
+        <% end %>
+        super()
+      end
+
+      def result
+        {}
+      end
+    end
+    <% modules.reverse.each do |_mod| %>
+    end
+    <% end %>
+end

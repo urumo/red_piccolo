@@ -12,7 +12,7 @@ RSpec.describe DomainServices::Chat::EditChatService do
     context 'when user is not an admin or the owner' do
       it 'raises an error' do
         expect do
-          described_class.call(user, chat, 'title', 'description')
+          described_class.call(user, chat.id, 'title', 'description')
         end.to raise_error(DomainErrors::Chat::NotAnAdminError)
       end
     end
@@ -20,8 +20,7 @@ RSpec.describe DomainServices::Chat::EditChatService do
     context 'when user is an admin or the owner' do
       it 'updates the chat' do
         chat.chat_participants.create(user:, user_role: :admin)
-        chat.reload # Reload once before the change matchers
-        expect { described_class.call(user, chat, new_chat_title, new_chat_description) }
+        expect { described_class.call(user, chat.id, new_chat_title, new_chat_description) && chat.reload }
           .to change(chat, :title).to(new_chat_title)
                                   .and change(chat, :description).to(new_chat_description)
       end

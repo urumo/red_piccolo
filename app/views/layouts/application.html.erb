@@ -6,21 +6,68 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag "bulma", "data-turbo-track": "reload" %>
-  <%#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-<!--  <script src="https://unpkg.com/htmx.org@1.9.8"></script>-->
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload", preload: false %>
+  <%= stylesheet_link_tag "tuicss", "data-turbo-track": "reload", preload: false %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   <%= vite_client_tag %>
-  <%= vite_typescript_tag 'application' %>
+  <%#= vite_typescript_tag 'application' %>
 </head>
 
 <body>
+<nav class="tui-nav">
+  <ul>
+    <li class="tui-dropdown">
+      <span class="red-168-text">L</span>inks
+      <div class="tui-dropdown-content">
+        <ul>
+          <li>
+            <a href="<%= root_path %>"><span class="red-168-text">H</span>ome</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <% if session[:user_id].present? %>
+      <li class="tui-dropdown">
+        <span class="red-168-text"><%= session[:full_name][0] %></span><%= session[:full_name][1..] %>
+        <div class="tui-dropdown-content">
+          <ul>
+            <li>
+              <%= link_to raw('<span class="red-168-text">L</span>og Out'), logout_path, method: :delete %>
+            </li>
+            <li><a href="/identity"><span class="red-168-text">S</span>ettings</a></li>
+          </ul>
+        </div>
+      </li>
+    <% else %>
+      <li v-else class="tui-dropdown">
+        <span class="red-168-text">I</span>dentity
+        <div class="tui-dropdown-content">
+          <ul>
+            <li><a href="/identity/auth"><span class="red-168-text">S</span>ign In</a></li>
+            <li><a href="/identity/auth?form_action=register"><span class="red-168-text">S</span>ign up</a></li>
+          </ul>
+        </div>
+      </li>
+    <% end %>
+    <span class="tui-datetime" data-format="h:m:s a"></span>
+  </ul>
+</nav>
 <% flash.each_with_index do |type_and_message, index| %>
   <div id="<%= type_and_message.first %>-<%= index %>" class="notification is-<%= type_and_message.first %>">
     <button class="delete"></button>
     <%= type_and_message.last %>
   </div>
 <% end %>
-<%= yield %>
+<div id="main_body_yield" class="tui-bg-blue-white">
+  <%= yield %>
+</div>
+<div class="tui-statusbar">
+  <ul>
+    <li><span class="red-168-text">s</span>vck.dev</li>
+    <span class="tui-statusbar-divider"></span>
+    <li><span class="red-168-text"><%= @year[0] %></span><%= @year[1..] %></li>
+  </ul>
+</div>
+
 </body>
 </html>

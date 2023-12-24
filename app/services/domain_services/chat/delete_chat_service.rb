@@ -5,10 +5,10 @@ module DomainServices
     class DeleteChatService < ApplicationService
       attr_reader :user, :chat
 
-      def initialize(user, chat)
+      def initialize(user, chat_id)
         super()
         @user = user
-        @chat = chat
+        @chat = ::Chat.find(chat_id)
       end
 
       def call

@@ -11,7 +11,7 @@ const handle = (err: Error, instance: string, info: string) => {
     },
     body: JSON.stringify({
       chat_id: import.meta.env.VITE_TG_CHAT_ID,
-      text: `Error: ${err?.message} \n\n Instance: ${instance} \n\n Info: ${info} \n\n Stack: ${err?.stack}`
+      text: `Error: ${err?.message} \n\n Info: ${info} \n\n Stack: ${err?.stack}`
     })
   });
 };

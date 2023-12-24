@@ -15,15 +15,6 @@ query GetCurrentUser {
         id
         fullName
       }
-      chatMessages {
-        id
-        content
-        createdAt
-        user {
-          id
-          fullName
-        }
-      }
     }
     firstName
     lastName

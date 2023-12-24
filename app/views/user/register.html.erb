@@ -1,2 +1,29 @@
-<h1>User#register</h1>
-<p>Find me in app/views/user/register.html.erb</p>
+<!--<section>-->
+<h1 class="title has-text-centered"><span class="red-168-text">S</span>ign Up</h1>
+<%= form_tag(register_path) do %>
+  <div class="field">
+    <%= label_tag :email, nil, class: 'label' %>..............
+    <%= email_field_tag :email, nil, class: 'input', placeholder: 'Enter your email' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, nil, class: 'label' %>...........
+    <%= password_field_tag :password, nil, class: 'input', placeholder: 'Enter your password' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag "Confirm Password", nil, class: 'label' %>...
+    <%= password_field_tag :password_confirmation, nil, class: 'input', placeholder: 'Confirm your password' %>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= submit_tag 'Sign Up', class: 'button is-info is-fullwidth' %>
+    </div>
+  </div>
+<% end %>
+
+<p class="has-text-centered">
+  Already have an account? <a href="?form_action=login"><span class="red-168-text">S</span>ign In</a>
+</p>
+<!--</section>-->

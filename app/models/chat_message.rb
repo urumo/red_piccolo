@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class ChatMessage < ApplicationRecord
+  default_scope { with_user.newer_first }
+  scope :with_user, -> { includes(:user) }
+  scope :with_chat, -> { includes(:chat) }
+  scope :with_message_histories, -> { includes(:message_histories) }
+  scope :with_all, lambda {
+    with_user
+      .with_chat
+      .with_message_histories
+  }
+  scope :newer_first, -> { order(created_at: :desc) }
   belongs_to :chat
   belongs_to :user
   has_many :message_histories, dependent: :destroy

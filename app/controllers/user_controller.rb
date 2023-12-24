@@ -8,7 +8,11 @@ class UserController < ApplicationController
 
   def index
     with_http_error_handling do
-      @user = @current_user
+      respond_to do |format|
+        @user = @current_user
+        format.html { render('user/index') }
+        format.json { render json: @user.as_dto, status: :ok }
+      end
     end
   end
 
@@ -92,10 +96,13 @@ class UserController < ApplicationController
 
   def generate_jwt
     token = DomainServices::User::LoginService.call(params[:email], params[:password])
+    user = DomainServices::User::AuthorizationService.call(token)
     respond_to do |format|
       format.html do
         session[:token] = token
-        redirect_to_root
+        session[:user_id] = user.id
+        session[:full_name] = user.full_name
+        redirect_to root_path
       end
       format.json { render json: { token: }, status: :ok }
     end

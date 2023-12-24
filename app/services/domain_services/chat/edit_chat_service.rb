@@ -5,10 +5,10 @@ module DomainServices
     class EditChatService < ApplicationService
       attr_reader :user, :chat, :title, :description
 
-      def initialize(user, chat, title, description)
+      def initialize(user, chat_id, title, description)
         super()
         @user = user
-        @chat = chat
+        @chat = ::Chat.find(chat_id)
         @title = title
         @description = description
       end

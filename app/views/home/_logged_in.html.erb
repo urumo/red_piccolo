@@ -1,0 +1,9 @@
+<div id="chat"></div>
+<%= vite_typescript_tag 'chat' %>
+
+<script type="module">
+  const chatApp = document.getElementById('chat')
+  if(!chatApp.children.length){
+    window.location.reload()
+  }
+</script>

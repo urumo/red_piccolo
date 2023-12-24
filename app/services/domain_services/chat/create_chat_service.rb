@@ -9,7 +9,6 @@ module DomainServices
         super()
         raise DomainErrors::Chat::NoOwnerError unless current_user
         raise DomainErrors::Chat::NoTitleError unless chat_name
-
         @current_user = current_user
         @chat_name = chat_name
         @description = description

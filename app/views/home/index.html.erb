@@ -1,1 +1,7 @@
-<div id="app"></div>
+<section class="section">
+  <% if session[:token].present? %>
+    <%= render 'logged_in' %>
+  <% else %>
+    <%= render 'unauthorized' %>
+  <% end %>
+</section>

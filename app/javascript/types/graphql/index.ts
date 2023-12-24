@@ -316,13 +316,6 @@ export type GetCurrentUserQuery = {
       title: string;
       description?: string | null;
       users: Array<{ __typename?: 'User'; id: string; fullName?: string | null }>;
-      chatMessages: Array<{
-        __typename?: 'ChatMessage';
-        id: string;
-        content?: string | null;
-        createdAt: any;
-        user: { __typename?: 'User'; id: string; fullName?: string | null };
-      }>;
     }>;
     blockedUsers: Array<{
       __typename?: 'User';
@@ -437,15 +430,6 @@ export const GetCurrentUserDocument = gql`
         users {
           id
           fullName
-        }
-        chatMessages {
-          id
-          content
-          createdAt
-          user {
-            id
-            fullName
-          }
         }
       }
       firstName
