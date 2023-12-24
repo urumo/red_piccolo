@@ -10,7 +10,7 @@ RSpec.describe DomainServices::Chat::DeleteChatService do
     context 'when user is not the owner of the chat' do
       it 'raises an error' do
         expect { chat.save! }.to change(Chat, :count).from(0).to(1)
-        expect { described_class.call(user, chat) }.to(raise_error(DomainErrors::Chat::ChatOwnerError)
+        expect { described_class.call(user, chat.id) }.to(raise_error(DomainErrors::Chat::ChatOwnerError)
                                                          .and(change(Chat, :count).by(0)))
       end
     end
@@ -18,7 +18,7 @@ RSpec.describe DomainServices::Chat::DeleteChatService do
     context 'when user is the owner of the chat' do
       it 'deletes the chat' do
         chat.save!
-        expect { described_class.call(chat.owner, chat) }.to change(Chat, :count).from(1).to(0)
+        expect { described_class.call(chat.owner, chat.id) }.to change(Chat, :count).from(1).to(0)
       end
     end
   end

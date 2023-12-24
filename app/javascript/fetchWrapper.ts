@@ -1,15 +1,21 @@
 import ErrorHandler from '@/errorHandler';
 
+type Options = {
+  headers?: Record<string, string>;
+  method?: "GET" | "POST" | "PUT" | "DELETE";
+  body?: string;
+}
+
 async function fetchWrapper(
   url: string,
-  options = {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    },
-    method: 'GET'
-  }
+  options: Options = {}
 ) {
+  options.headers = {
+    ...options.headers,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }
+  options.method = options.method || 'GET';
   const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
   const headers = {
     ...options.headers,
@@ -36,7 +42,7 @@ async function fetchWrapper(
 
     return response;
   } catch (error) {
-    ErrorHandler(error, 'fetchWrapper', 'fetchWrapper'  );
+    ErrorHandler(error, 'fetchWrapper', 'fetchWrapper');
   }
 }
 

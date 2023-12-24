@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :warning, :danger, :info
   around_action :wrap_in_error_handler
   before_action :set_new_csrf_token
+  before_action do
+    year_created = '2023'
+    year = Date.current.year.to_s
+
+    @year = year == year_created ? year : "#{year_created} - #{year}"
+  end
 
   def authorize_user
     raise DomainErrors::User::AuthorizationError if current_user.nil?
@@ -29,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user = DomainServices::User::AuthorizationService.call(session_token)
+    @current_user ||= DomainServices::User::AuthorizationService.call(session_token)
   rescue StandardError
     nil
   end

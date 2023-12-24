@@ -1,5 +1,4 @@
 <template>
-  <ChatSystem />
 </template>
 
 <style>
@@ -12,5 +11,4 @@
 }
 </style>
 <script setup lang="ts">
-import ChatSystem from '@/components/ChatSystem.vue';
 </script>

@@ -1,6 +1,9 @@
-<% if params['form_action']&.strip == 'register' %>
-  <%= render 'register' %>
-<% else %>
-<%= render 'login' %>
-<% end %>
+<section class="section">
 
+  <% if params['form_action']&.strip == 'register' %>
+    <%= render 'register' %>
+  <% else %>
+    <%= render 'login' %>
+  <% end %>
+
+</section>

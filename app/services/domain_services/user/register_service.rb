@@ -16,7 +16,17 @@ module DomainServices
         raise DomainErrors::User::EmailAlreadyTakenError if ::User.find_by(email:).present?
         raise DomainErrors::User::PasswordConfirmationDidNotMatchError if password != password_confirmation
 
-        ::User.new(email:, password:, password_salt: SecureRandom.hex(16)).save!
+        result = ::User.new(email:, password:, password_salt: SecureRandom.hex(16)).save!
+        add_to_random
+        result
+      end
+
+      private
+
+      def add_to_random
+        chat = ::Chat.find_by(title: 'Random')
+        user = ::User.find_by(email:)
+        DomainServices::Chat::AddUserToChatService.call(chat, ::User.first, user)
       end
     end
   end

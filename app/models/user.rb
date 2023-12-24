@@ -41,14 +41,20 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: I18n.t('user.not_a_valid_email') }
   validates :password, length: { minimum: 8, message: I18n.t('user.password.too_short', count: 8) },
-            if: :password_present?
+                       if: :password_present?
   validates :password, format: { with: /\W/, message: I18n.t('user.password.special_character_missing') },
-            if: :password_present?
+                       if: :password_present?
   validates :password, format: { with: /[a-z]/, message: I18n.t('user.password.lowercase_missing') },
-            if: :password_present?
+                       if: :password_present?
   validates :password, format: { with: /[A-Z]/, message: I18n.t('user.password.uppercase_missing') },
-            if: :password_present?
+                       if: :password_present?
   validates :password, format: { with: /\d/, message: I18n.t('user.password.number_missing') }, if: :password_present?
+
+  def as_dto
+    dto = super
+    dto['full_name'] = full_name
+    dto
+  end
 
   private
 
